@@ -189,6 +189,7 @@ html, body{
   line-height: 1.6; opacity: 0;
   transition: transform .6s cubic-bezier(.2,.7,.1,1), opacity .4s ease;
   font-size: clamp(10px, 1.6vh, 12px);
+  z-index: 999;
 }
 .envelope.is-open .flap{ transform: rotateX(-180deg); }
 .envelope.is-open .letter{ opacity: 1; transform: translateX(-50%) translateY(-5%); }
