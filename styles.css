@@ -641,3 +641,20 @@ html, body{
   0%{ transform: translateY(-10%) rotate(0deg); }
   100%{ transform: translateY(120%) rotate(540deg); }
 }
+
+/* ===== Right film behind the letter (non-destructive) ===== */
+.stage { position: relative; }
+
+.center-stack {
+  position: relative;
+  z-index: 5;              /* ensure center content is above the right film */
+}
+
+.film-right {
+  grid-column: 2 / 4;      /* span center + right columns */
+  z-index: 1;              /* sit under center-stack */
+  pointer-events: none;    /* don’t block envelope/button clicks */
+}
+
+/* Keep left film above right film if they meet near the center */
+.film-left { z-index: 2; }
