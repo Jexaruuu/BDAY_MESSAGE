@@ -265,3 +265,18 @@ window.addEventListener('load',()=>{
 
   showCake(15);
 });
+
+// === Allow inner scrolling inside the letter on mobile/desktop ===
+(function enableLetterScroll() {
+  const letterEl = document.querySelector('.letter');
+  if (!letterEl) return;
+
+  // Stop these events from bubbling to the window, where you preventDefault()
+  letterEl.addEventListener('touchmove', (e) => {
+    e.stopPropagation();
+  }, { passive: true });
+
+  letterEl.addEventListener('wheel', (e) => {
+    e.stopPropagation();
+  }, { passive: true });
+})();

@@ -641,3 +641,98 @@ html, body{
   0%{ transform: translateY(-10%) rotate(0deg); }
   100%{ transform: translateY(120%) rotate(540deg); }
 }
+/* =========================
+   Mobile Responsiveness
+   (non-destructive additions)
+   ========================= */
+
+/* Make scrollbars inside the letter nice & thin (doesn’t affect layout) */
+.letter {
+  scrollbar-width: thin;
+  scrollbar-color: #cfe1ff transparent;
+}
+.letter::-webkit-scrollbar { width: 8px; }
+.letter::-webkit-scrollbar-thumb { background: #cfe1ff; border-radius: 6px; }
+
+/* Respect device safe areas (iPhone notch etc.) */
+@supports (padding: max(0px)) {
+  .hud,
+  .credits {
+    padding-left: max(8px, env(safe-area-inset-left));
+    padding-right: max(8px, env(safe-area-inset-right));
+  }
+}
+
+/* ---------- Tablets and small laptops ---------- */
+@media (max-width: 1024px) {
+  :root{
+    /* Slightly reduce film width and spaceship orbit for tighter view */
+    --film-w: clamp(96px, 18vw, 180px);
+    --orbit-x: 9vw;
+    --orbit-y: 12vh;
+  }
+
+  .gif-row { max-width: min(720px, 100%); }
+}
+
+/* ---------- Phones & small tablets ---------- */
+@media (max-width: 768px) {
+  /* Stack the layout: center content only (keep films in DOM, just hide visually) */
+  .stage {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .film { display: none; }
+
+  .center-stack { padding: 8px 12px; }
+
+  .gif-row .gif-tile {
+    width: clamp(88px, 30vw, 140px);
+    height: clamp(88px, 30vw, 140px);
+  }
+
+  /* Make the envelope fill the screen width nicely */
+  .envelope {
+    width: min(92vw, 520px);
+    height: clamp(200px, 40vh, 320px);
+  }
+
+  /* Let the letter scroll on mobile (so long messages aren’t clipped) */
+  .letter {
+    width: 94%;
+    max-height: min(66vh, 440px);
+    overflow: auto;                 /* enables inner scrolling */
+    -webkit-overflow-scrolling: touch;
+    font-size: 11.5px;              /* a touch smaller for phones */
+    line-height: 1.55;
+  }
+
+  .pixel-btn {
+    padding: 10px 16px;
+    font-size: 12px;
+    /* Wider tap target if you like:
+       width: 100%; */
+  }
+
+  .hud h1 { font-size: clamp(12px, 2.2vh, 18px); }
+  .hud p  { font-size: clamp(10px, 1.8vh, 12px); }
+
+  /* Cake scales a bit tighter */
+  .cake { width: clamp(220px, 68vw, 340px); height: auto; }
+}
+
+/* ---------- Very small phones ---------- */
+@media (max-width: 420px) {
+  :root { --swinger-size: 64px; }
+
+  .letter { font-size: 11px; }
+  .plaque { font-size: 10px; }
+
+  .countdown {
+    width: 52px; height: 52px; font-size: 16px;
+  }
+
+  /* Optional: make the button full width for easier tapping */
+  /* .pixel-btn { width: 100%; } */
+}
+
