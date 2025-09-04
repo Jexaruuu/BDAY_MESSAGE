@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday!</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-stars" aria-hidden="true"></div>
+
+  <div class="viewport">
+    <header class="hud">
+      <h1>Happy Birthday To You!</h1>
+      <h1>September 22, Monday</h1>
+      <br />
+      <p>Tap the envelope to read the birthday message.</p>
+    </header>
+
+    <main class="stage">
+      <aside class="film film-left">
+        <div class="film-perf" aria-hidden="true"></div>
+        <div class="film-viewport">
+          <ul class="track" id="leftTrack" aria-label="Left photo film"></ul>
+        </div>
+      </aside>
+
+      <div class="center-stack">
+        <div id="gifRow" class="gif-row" aria-label="GIF gallery"></div>
+
+        <section class="envelope-wrapper">
+          <button id="toggleBtn" class="pixel-btn" aria-controls="envelope" aria-expanded="false">OPEN</button>
+
+          <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open birthday message">
+            <div class="envelope-shadow" aria-hidden="true"></div>
+            <div class="pocket"></div>
+            <div class="flap"></div>
+
+            <article class="letter" aria-live="polite">
+              <header class="letter-head">💙 To: Jergen! 💙</header>
+              <p class="typewriter">
+                Happy Birthday, Yoda/Jergen!<br/>
+                <br/>
+               Hi, Jergennnnnnn! How are you po? Wish ko na maging masaya ka at hindi ka ma stress ngayong birthday mo. Sana lahat ng gusto mo ay magawa mo tska matupad at sana lahat ng gumugulo sa isip mo is mawala at gumaan na. Wishing you, si Aqui and your family na maging healthy lagi. Makulit ka pa naman hindi ka kumakain minsan. Inumin mo palagi mga meds mo okay! Sana okay ikaw palagi dyan sa new job mo, wag ka pa stress ha. Mag a-ice cream pa tayo next time and mag co-coffee. So ayun, Ingat ikaw palagi ha okii. Inom maraming tubig always ha. Dami pang gustong sabihin pero baka maging MMK na to haha. Ewan ko, may magic ka ata eh haha kase palagi parin kitang ina-admire sa malayo. Pag feel mo ang bigat na, nandito lang me ha, palaging makikinig sayo. Enjoy your day okay! Miss youuuuuuu! 💙
+              </p>
+              <footer class="letter-foot">— From: Jex :) 💌</footer>
+            </article>
+          </div>
+        </section>
+
+        <div id="confetti-layer" aria-hidden="true"></div>
+      </div>
+
+      <aside class="film film-right">
+        <div class="film-perf" aria-hidden="true"></div>
+        <div class="film-viewport">
+          <ul class="track" id="rightTrack" aria-label="Right photo film"></ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="credits">
+      <small>I hope you like this, Jergen! 🎂</small>
+    </footer>
+  </div>
+
+  <div id="cakeOverlay" class="cake-overlay" aria-hidden="true">
+    <div class="cake-wrap">
+      <div class="wish">Close Your Eyes and Make a Wish.</div>
+       <p>(Finish the countdown to continue)</p>
+      <div class="countdown" id="cakeCountdown">15</div>
+      <div class="cake">
+        <div class="plate"></div>
+        <div class="cake-body">
+          <div class="ribbon"></div>
+          <div class="icing"></div>
+          <div class="berries"></div>
+          <div class="sprinkles"></div>
+          <div class="pearls"></div>
+          <div class="base-berries"></div>
+          <div class="plaque">HAPPY BIRTHDAY JERGEN! :)</div>
+        </div>
+        <div class="candle">
+          <div class="wick"></div>
+          <div class="flame"></div>
+          <div class="glow"></div>
+          <div class="sparks"><span></span><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="spaceLayer" class="space-layer" aria-hidden="true"></div>
+  <div id="swingLayer" class="swing-layer" aria-hidden="true"></div>
+  <div id="crittersLayer" class="critters-layer" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
