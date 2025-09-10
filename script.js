@@ -213,13 +213,15 @@ function showCake(seconds){
       cakeTimer=null;
       cakeOverlay.classList.remove('show');
       cakeOverlay.setAttribute('aria-hidden','true');
-      if(autoplayPrimed){
-        const a=document.getElementById('audio');
-        a.muted=false;
-        a.currentTime=0;
-        a.play().catch(()=>tryPlayAudio());
-      }else{
-        tryPlayAudio();
+      const a=document.getElementById('audio');
+      if(a){
+        if(autoplayPrimed){
+          a.muted=false;
+          a.currentTime=0;
+          a.play().catch(()=>tryPlayAudio());
+        }else{
+          tryPlayAudio();
+        }
       }
     }
   };
@@ -274,6 +276,8 @@ function initPlayer(){
   const bar=document.getElementById('progressBar');
   const fill=document.getElementById('progressFill');
   let idx=0;
+
+  if(!audio||!cover||!titleEl||!currentEl||!totalEl||!playBtn||!prevBtn||!nextBtn||!bar||!fill) return;
 
   function fmt(t){ if(!isFinite(t)) return '0:00'; const m=Math.floor(t/60); const s=Math.floor(t%60); return `${m}:${s<10?'0':''}${s}`; }
   function setPlayIcon(paused){ playBtn.textContent=paused?'▶':'❚❚'; }
@@ -349,6 +353,6 @@ window.addEventListener('load',()=>{
   createSpaceship();
   startCritters();
 
-  showCake(15);
   initPlayer();
+  showCake(15);
 });
