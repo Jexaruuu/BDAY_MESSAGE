@@ -422,7 +422,6 @@ html, body{
   max-width:min(80vw,640px);
   max-height:min(70vh,620px);
   width:auto; height:auto; border-radius:12px; display:block;
-  border:1px solid #0a1630;
 }
 .lb-close{
   position:absolute; right:-8px; top:-8px;
