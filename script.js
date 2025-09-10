@@ -12,7 +12,7 @@ const toggleBtn=document.getElementById('toggleBtn');
 const confettiLayer=document.getElementById('confetti-layer');
 
 const playlist=[
-  {title:"LANY — anything 4 u",src:"anything-4-u.mp3",cover:"citylights.jpg"},
+  {title:"LANY — anything 4 u",src:"anything-4-u.mp3",cover:"covers/1.jpg"},
 ];
 
 function buildFilm(trackEl,images,direction="up"){
@@ -211,6 +211,7 @@ function showCake(seconds){
       cakeTimer=null;
       cakeOverlay.classList.remove('show');
       cakeOverlay.setAttribute('aria-hidden','true');
+      tryPlayAudio();
     }
   };
   tick();
@@ -271,7 +272,8 @@ function initPlayer(){
     idx=(i+playlist.length)%playlist.length;
     const tr=playlist[idx];
     titleEl.textContent=tr.title;
-    cover.src=tr.cover||cover.src;
+    cover.src=tr.cover || "citylights.jpg";
+    cover.onerror=()=>{ cover.src="citylights.jpg"; };
     audio.src=tr.src;
     audio.load();
     setPlayIcon(true);
@@ -302,6 +304,17 @@ function initPlayer(){
   });
 
   load(0,false);
+}
+
+function tryPlayAudio(){
+  const a=document.getElementById('audio');
+  if(!a) return;
+  a.play().catch(()=>{
+    const once=()=>{ a.play().catch(()=>{}); document.removeEventListener('pointerdown',once,true); document.removeEventListener('keydown',once,true); document.removeEventListener('touchstart',once,true); };
+    document.addEventListener('pointerdown',once,true);
+    document.addEventListener('keydown',once,true);
+    document.addEventListener('touchstart',once,true);
+  });
 }
 
 window.addEventListener('load',()=>{
