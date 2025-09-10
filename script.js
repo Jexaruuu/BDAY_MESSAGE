@@ -198,8 +198,6 @@ function createSpaceship(){
   spaceLayer.appendChild(shipWrap);
 }
 
-let autoplayPrimed=false;
-
 function showCake(seconds){
   if(cakeTimer){ clearInterval(cakeTimer); cakeTimer=null; }
   cakeOverlay.classList.add('show');
@@ -213,16 +211,6 @@ function showCake(seconds){
       cakeTimer=null;
       cakeOverlay.classList.remove('show');
       cakeOverlay.setAttribute('aria-hidden','true');
-      const a=document.getElementById('audio');
-      if(a){
-        if(autoplayPrimed){
-          a.muted=false;
-          a.currentTime=0;
-          a.play().catch(()=>tryPlayAudio());
-        }else{
-          tryPlayAudio();
-        }
-      }
     }
   };
   tick();
@@ -317,24 +305,14 @@ function initPlayer(){
 
   load(0,false);
 
-  audio.muted=true;
-  audio.play().then(()=>{
-    setTimeout(()=>{
-      audio.pause();
-      audio.currentTime=0;
-      autoplayPrimed=true;
-    },60);
-  }).catch(()=>{ autoplayPrimed=false; });
-}
-
-function tryPlayAudio(){
-  const a=document.getElementById('audio');
-  if(!a) return;
-  a.play().catch(()=>{
-    const once=()=>{ a.play().catch(()=>{}); document.removeEventListener('pointerdown',once,true); document.removeEventListener('keydown',once,true); document.removeEventListener('touchstart',once,true); };
-    document.addEventListener('pointerdown',once,true);
-    document.addEventListener('keydown',once,true);
-    document.addEventListener('touchstart',once,true);
+  audio.play().catch(()=>{
+    audio.muted=true;
+    audio.play().then(()=>{
+      const unmute=()=>{ audio.muted=false; document.removeEventListener('pointerdown',unmute,true); document.removeEventListener('keydown',unmute,true); document.removeEventListener('touchstart',unmute,true); };
+      document.addEventListener('pointerdown',unmute,true);
+      document.addEventListener('keydown',unmute,true);
+      document.addEventListener('touchstart',unmute,true);
+    }).catch(()=>{});
   });
 }
 
