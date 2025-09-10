@@ -13,15 +13,6 @@ const confettiLayer=document.getElementById('confetti-layer');
 
 const playlist=[
   {title:"LANY — anything 4 u",src:"anything-4-u.mp3",cover:"citylights.jpg"},
-  {title:"LANY — ILYSB",src:"audio/ilysb.mp3",cover:"citylights.jpg"},
-  {title:"LANY — you!",src:"audio/you.mp3",cover:"citylights.jpg"},
-  {title:"LANY — Dancing in the Kitchen",src:"audio/dancing-in-the-kitchen.mp3",cover:"citylights.jpg"},
-  {title:"LANY — Cowboy in LA",src:"audio/cowboy-in-la.mp3",cover:"citylights.jpg"},
-  {title:"LANY — Like You Lots",src:"audio/like-you-lots.mp3",cover:"citylights.jpg"},
-  {title:"LANY — Pink Skies",src:"audio/pink-skies.mp3",cover:"citylights.jpg"},
-  {title:"LANY — yeah, babe, no way",src:"audio/yeah-babe-no-way.mp3",cover:"citylights.jpg"},
-  {title:"LANY — Made in Hollywood",src:"audio/made-in-hollywood.mp3",cover:"citylights.jpg"},
-  {title:"LANY — Up To Me",src:"audio/up-to-me.mp3",cover:"citylights.jpg"}
 ];
 
 function buildFilm(trackEl,images,direction="up"){
