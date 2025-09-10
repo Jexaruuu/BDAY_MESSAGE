@@ -397,15 +397,21 @@ html, body{
 .bubble-quote::after{ right:22px; bottom:-10px; }
 
 /* put CTA bubble on frames & gif tiles */
-.frame, .gif-tile{ position:relative }
+.frame,
+.gif-tile,
+.lb-img-wrap{
+  background: transparent !important;
+}
 .frame .bubble-cta, .gif-tile .bubble-cta{ z-index:3 }
 
 /* Lightbox */
-.lightbox{
+.lightbox .bubble-quote{
   position:fixed; inset:0; z-index:2500;
   display:none; place-items:center;
   background:rgba(5,12,32,.55);
   backdrop-filter:blur(6px) saturate(1.05);
+    top: -12px;
+  right: -6px;
 }
 .lightbox.show{ display:grid }
 .lightbox-inner{
@@ -416,7 +422,7 @@ html, body{
 .lb-img-wrap{
   position:relative;
   background:linear-gradient(180deg,#0f214a,#152f66);
-  border:2px solid #0a1630; border-radius:16px;
+  border: none !important;
   padding:14px;
   box-shadow:var(--shadow);
   display:grid; place-items:center;

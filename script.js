@@ -22,7 +22,7 @@ const speechData = {
   // gif row images
   "cookiesandcream.jpg": { cta: "yum?", quote: "“Life’s sweeter with you in it.”" },
   "blueflower.jpg": { cta: "smell this", quote: "“Bloom where you’re loved.”" },
-  "coffee.jpg": { cta: "coffee date?", quote: "“Let’s espresso our feelings.”" },
+  "coffee.jpg": { cta: "coffee?", quote: "“Let’s espresso our feelings.”" },
   "citylights.jpg": { cta: "shine!", quote: "“Meet me where the lights feel endless.”" },
   "moon.jpg": { cta: "look up", quote: "“To the moon and back—always.”" }
 };
