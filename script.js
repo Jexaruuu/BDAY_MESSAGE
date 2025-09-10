@@ -265,8 +265,6 @@ function initPlayer(){
   const fill=document.getElementById('progressFill');
   let idx=0;
 
-  if(!audio||!cover||!titleEl||!currentEl||!totalEl||!playBtn||!prevBtn||!nextBtn||!bar||!fill) return;
-
   function fmt(t){ if(!isFinite(t)) return '0:00'; const m=Math.floor(t/60); const s=Math.floor(t%60); return `${m}:${s<10?'0':''}${s}`; }
   function setPlayIcon(paused){ playBtn.textContent=paused?'▶':'❚❚'; }
   function load(i,auto){
@@ -304,16 +302,6 @@ function initPlayer(){
   });
 
   load(0,false);
-
-  audio.play().catch(()=>{
-    audio.muted=true;
-    audio.play().then(()=>{
-      const unmute=()=>{ audio.muted=false; document.removeEventListener('pointerdown',unmute,true); document.removeEventListener('keydown',unmute,true); document.removeEventListener('touchstart',unmute,true); };
-      document.addEventListener('pointerdown',unmute,true);
-      document.addEventListener('keydown',unmute,true);
-      document.addEventListener('touchstart',unmute,true);
-    }).catch(()=>{});
-  });
 }
 
 window.addEventListener('load',()=>{
@@ -331,6 +319,6 @@ window.addEventListener('load',()=>{
   createSpaceship();
   startCritters();
 
-  initPlayer();
   showCake(15);
+  initPlayer();
 });
