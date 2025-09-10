@@ -316,7 +316,7 @@ html, body{
 @keyframes cakeConf{0%{transform:translateY(-10%) rotate(0deg)}100%{transform:translateY(120%) rotate(540deg)}}
 
 /* Player */
-.player-wrap{width:clamp(320px, 62vw, 640px);display:flex;justify-content:center;flex-direction:column;align-items:center;gap:6px}
+.player-wrap{width:clamp(320px, 40vw, 600px);display:flex;justify-content:center;flex-direction:column;align-items:center;gap:6px}
 .player{display:flex;align-items:center;gap:12px;width:100%;background:rgba(9,20,48,.5);backdrop-filter:blur(8px) saturate(1.05);border:2px solid #0a1630;border-radius:18px;padding:10px 14px;box-shadow:var(--shadow)}
 .player-cover{width:48px;height:48px;border-radius:12px;object-fit:cover;border:1px solid #0a1630}
 .player-meta{display:flex;flex-direction:column;gap:8px;min-width:0;flex:1}
