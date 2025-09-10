@@ -426,7 +426,6 @@ html, body{
 .lb-close{
   position:absolute; right:-8px; top:-8px;
   width:36px; height:36px; border-radius:10px;
-  border:2px solid #001033;
   background:#dbe9ff; color:#001033; font-weight:700;
   box-shadow:0 0 0 2px #001033, 0 4px 0 #001033; cursor:pointer;
 }
