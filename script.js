@@ -12,7 +12,7 @@ const toggleBtn=document.getElementById('toggleBtn');
 const confettiLayer=document.getElementById('confetti-layer');
 
 const playlist=[
-  {title:"LANY — anything 4 u",src:"audio/anything-4-u.mp3",cover:"citylights.jpg"},
+  {title:"LANY — anything 4 u",src:"anything-4-u.mp3",cover:"citylights.jpg"},
   {title:"LANY — ILYSB",src:"audio/ilysb.mp3",cover:"citylights.jpg"},
   {title:"LANY — you!",src:"audio/you.mp3",cover:"citylights.jpg"},
   {title:"LANY — Dancing in the Kitchen",src:"audio/dancing-in-the-kitchen.mp3",cover:"citylights.jpg"},
