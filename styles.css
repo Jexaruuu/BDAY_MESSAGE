@@ -416,7 +416,6 @@ html, body{
 .lb-img-wrap{
   position:relative;
   padding:14px;
-  box-shadow:var(--shadow);
   display:grid; place-items:center;
 }
 .lb-img-wrap img{
