@@ -12,7 +12,7 @@ const toggleBtn=document.getElementById('toggleBtn');
 const confettiLayer=document.getElementById('confetti-layer');
 
 const playlist=[
-  {title:"LANY — anything 4 u",src:"anything-4-u.mp3",cover:"1.jpg"},
+  {title:"LANY — anything 4 u",src:"/anything-4-u.mp3",cover:"1.jpg"},
 ];
 
 function buildFilm(trackEl,images,direction="up"){
