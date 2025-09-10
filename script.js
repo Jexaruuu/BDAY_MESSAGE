@@ -12,7 +12,16 @@ const toggleBtn=document.getElementById('toggleBtn');
 const confettiLayer=document.getElementById('confetti-layer');
 
 const playlist=[
-  {title:"LANY — anything 4 u",src:"anything-4-u.mp3",cover:"covers/1.jpg"},
+  {title:"LANY — anything 4 u",src:"audio/anything-4-u.mp3",cover:"covers/anything-4-u.jpg"},
+  {title:"LANY — ILYSB",src:"audio/ilysb.mp3",cover:"covers/ilysb.jpg"},
+  {title:"LANY — you!",src:"audio/you.mp3",cover:"covers/you.jpg"},
+  {title:"LANY — Dancing in the Kitchen",src:"audio/dancing-in-the-kitchen.mp3",cover:"covers/dancing-in-the-kitchen.jpg"},
+  {title:"LANY — Cowboy in LA",src:"audio/cowboy-in-la.mp3",cover:"covers/cowboy-in-la.jpg"},
+  {title:"LANY — Like You Lots",src:"audio/like-you-lots.mp3",cover:"covers/like-you-lots.jpg"},
+  {title:"LANY — Pink Skies",src:"audio/pink-skies.mp3",cover:"covers/pink-skies.jpg"},
+  {title:"LANY — yeah, babe, no way",src:"audio/yeah-babe-no-way.mp3",cover:"covers/yeah-babe-no-way.jpg"},
+  {title:"LANY — Made in Hollywood",src:"audio/made-in-hollywood.mp3",cover:"covers/made-in-hollywood.jpg"},
+  {title:"LANY — Up To Me",src:"audio/up-to-me.mp3",cover:"covers/up-to-me.jpg"}
 ];
 
 function buildFilm(trackEl,images,direction="up"){
@@ -198,6 +207,8 @@ function createSpaceship(){
   spaceLayer.appendChild(shipWrap);
 }
 
+let autoplayPrimed=false;
+
 function showCake(seconds){
   if(cakeTimer){ clearInterval(cakeTimer); cakeTimer=null; }
   cakeOverlay.classList.add('show');
@@ -211,7 +222,14 @@ function showCake(seconds){
       cakeTimer=null;
       cakeOverlay.classList.remove('show');
       cakeOverlay.setAttribute('aria-hidden','true');
-      tryPlayAudio();
+      if(autoplayPrimed){
+        const a=document.getElementById('audio');
+        a.muted=false;
+        a.currentTime=0;
+        a.play().catch(()=>tryPlayAudio());
+      }else{
+        tryPlayAudio();
+      }
     }
   };
   tick();
@@ -304,6 +322,15 @@ function initPlayer(){
   });
 
   load(0,false);
+
+  audio.muted=true;
+  audio.play().then(()=>{
+    setTimeout(()=>{
+      audio.pause();
+      audio.currentTime=0;
+      autoplayPrimed=true;
+    },60);
+  }).catch(()=>{ autoplayPrimed=false; });
 }
 
 function tryPlayAudio(){
