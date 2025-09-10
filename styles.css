@@ -405,13 +405,11 @@ html, body{
 .frame .bubble-cta, .gif-tile .bubble-cta{ z-index:3 }
 
 /* Lightbox */
-.lightbox .bubble-quote{
+.lightbox{
   position:fixed; inset:0; z-index:2500;
   display:none; place-items:center;
   background:rgba(5,12,32,.55);
   backdrop-filter:blur(6px) saturate(1.05);
-    top: -12px;
-  right: -6px;
 }
 .lightbox.show{ display:grid }
 .lightbox-inner{
