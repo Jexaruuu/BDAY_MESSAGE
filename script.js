@@ -11,6 +11,25 @@ const envelope=document.getElementById('envelope');
 const toggleBtn=document.getElementById('toggleBtn');
 const confettiLayer=document.getElementById('confetti-layer');
 
+/* ⭐ NEW: CTA + Quote per image */
+const speechData = {
+  // film images
+  "1.png": { cta: "tap me!", quote: "“Small moments, big smiles.”" },
+  "2.png": { cta: "click me!", quote: "“You’re doing amazing, keep going.”" },
+  "3.png": { cta: "hey, psst →", quote: "“Today is for joy (and cake).”" },
+  "4.png": { cta: "open me!", quote: "“You light up the room like city lights.”" },
+  "5.png": { cta: "tap for magic", quote: "“More laughs. More love. More you.”" },
+  // gif row images
+  "cookiesandcream.jpg": { cta: "yum?", quote: "“Life’s sweeter with you in it.”" },
+  "blueflower.jpg": { cta: "smell this", quote: "“Bloom where you’re loved.”" },
+  "coffee.jpg": { cta: "coffee date?", quote: "“Let’s espresso our feelings.”" },
+  "citylights.jpg": { cta: "shine!", quote: "“Meet me where the lights feel endless.”" },
+  "moon.jpg": { cta: "look up", quote: "“To the moon and back—always.”" }
+};
+const getCTA = (src)=> (speechData[src]?.cta || "tap me!");
+const getQuote = (src)=> (speechData[src]?.quote || "“Happy birthday, keep shining!”");
+
+/* ===== Player (unchanged) ===== */
 const playlist=[
   {title:"LANY — anything 4 u",src:"anything-4-u.mp3",cover:"1.jpg"},
   {title:"LANY — ilysb",src:"ilysb.mp3",cover:"2.jpg"},
@@ -24,6 +43,7 @@ const playlist=[
   {title:"LANY — up to me",src:"up-to-me.mp3",cover:"7.webp"},
 ];
 
+/* ===== Build film strips — keep original, add bubble + click ===== */
 function buildFilm(trackEl,images,direction="up"){
   trackEl.dataset.direction=direction;
   const makeSequence=()=>{
@@ -37,6 +57,16 @@ function buildFilm(trackEl,images,direction="up"){
       img.alt=`${direction} film photo ${i+1}`;
       img.src=src;
       li.appendChild(img);
+
+      // ⭐ add CTA pixel bubble
+      const b=document.createElement('span');
+      b.className='bubble bubble-cta';
+      b.textContent=getCTA(src);
+      li.appendChild(b);
+
+      // ⭐ open lightbox on click
+      li.addEventListener('click',()=> openLightbox(src, getQuote(src)));
+
       frag.appendChild(li);
     });
     return frag;
@@ -49,6 +79,7 @@ function buildFilm(trackEl,images,direction="up"){
   trackEl.style.setProperty('--film-speed',`${duration}s`);
 }
 
+/* ===== Center GIF row — keep original, add bubble + click ===== */
 function buildGifRow(container,gifs){
   container.innerHTML="";
   gifs.forEach((src,i)=>{
@@ -60,6 +91,16 @@ function buildGifRow(container,gifs){
     img.decoding='async';
     img.src=src;
     tile.appendChild(img);
+
+    // ⭐ CTA bubble
+    const b=document.createElement('span');
+    b.className='bubble bubble-cta';
+    b.textContent=getCTA(src);
+    tile.appendChild(b);
+
+    // ⭐ click to open lightbox
+    tile.addEventListener('click',()=> openLightbox(src, getQuote(src)));
+
     container.appendChild(tile);
   });
 }
@@ -313,6 +354,29 @@ function initPlayer(){
   load(0,false);
 }
 
+/* ⭐ NEW: Lightbox controls */
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbQuote = document.getElementById('lbQuote');
+const lbClose = document.getElementById('lbClose');
+
+function openLightbox(src, quote){
+  lbImg.src = src;
+  lbImg.alt = 'Selected photo';
+  lbQuote.textContent = quote;
+  lightbox.classList.add('show');
+  lightbox.setAttribute('aria-hidden','false');
+}
+function closeLightbox(){
+  lightbox.classList.remove('show');
+  lightbox.setAttribute('aria-hidden','true');
+  lbImg.removeAttribute('src');
+}
+lbClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
+
+/* ===== Boot ===== */
 window.addEventListener('load',()=>{
   const leftTrack=document.getElementById('leftTrack');
   const rightTrack=document.getElementById('rightTrack');

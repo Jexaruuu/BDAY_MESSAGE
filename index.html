@@ -117,6 +117,17 @@
   <div id="swingLayer" class="swing-layer" aria-hidden="true"></div>
   <div id="crittersLayer" class="critters-layer" aria-hidden="true"></div>
 
+  <!-- ⭐ NEW: Lightbox overlay for clickable images + quote bubble -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+      <div class="lb-img-wrap">
+        <img id="lbImg" alt="">
+        <span class="bubble bubble-quote" id="lbQuote"></span>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

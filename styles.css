@@ -344,3 +344,94 @@ html, body{
 }
 @keyframes typing{from{width:0ch}to{width:8ch}}
 @keyframes blink{50%{border-color:transparent}}
+
+/* ======== Pixel Bubbles + Lightbox ======== */
+.bubble{
+  position:absolute;
+  display:inline-block;
+  max-width:210px;
+  padding:8px 10px;
+  background:#eaf1ff;
+  color:#001033;
+  border:2px solid #001033;
+  box-shadow:0 0 0 2px #001033, 0 4px 0 #001033;
+  border-radius:8px;
+  font-family:"Press Start 2P",system-ui,sans-serif;
+  font-size:10px;
+  line-height:1.35;
+  text-shadow:0 1px 0 #fff;
+  image-rendering:pixelated;
+}
+.bubble::after{
+  content:"";
+  position:absolute;
+  left:14px; bottom:-10px;
+  width:12px; height:12px;
+  background:#eaf1ff;
+  border:2px solid #001033;
+  box-shadow:0 0 0 2px #001033;
+  transform:rotate(45deg);
+}
+
+/* tiny CTA bubble on thumbnails */
+.bubble-cta{
+  top:8px; right:8px;
+  transform-origin:50% 50%;
+  animation:ctaPop 1.8s ease-in-out infinite;
+}
+.bubble-cta::after{ left:auto; right:12px; bottom:-8px; }
+@keyframes ctaPop{
+  0%,100%{ transform:scale(1) rotate(0deg) }
+  50%{ transform:scale(1.06) rotate(-1deg) }
+}
+
+/* big quote bubble in lightbox */
+.bubble-quote{
+  position:absolute;
+  right:-6px;
+  top:-10px;
+  max-width:min(54vw,520px);
+  font-size:12px;
+  padding:12px 14px;
+}
+.bubble-quote::after{ right:22px; bottom:-10px; }
+
+/* put CTA bubble on frames & gif tiles */
+.frame, .gif-tile{ position:relative }
+.frame .bubble-cta, .gif-tile .bubble-cta{ z-index:3 }
+
+/* Lightbox */
+.lightbox{
+  position:fixed; inset:0; z-index:2500;
+  display:none; place-items:center;
+  background:rgba(5,12,32,.55);
+  backdrop-filter:blur(6px) saturate(1.05);
+}
+.lightbox.show{ display:grid }
+.lightbox-inner{
+  position:relative;
+  width:min(92vw,900px);
+  animation:popin 220ms cubic-bezier(.2,.7,.1,1);
+}
+.lb-img-wrap{
+  position:relative;
+  background:linear-gradient(180deg,#0f214a,#152f66);
+  border:2px solid #0a1630; border-radius:16px;
+  padding:14px;
+  box-shadow:var(--shadow);
+  display:grid; place-items:center;
+}
+.lb-img-wrap img{
+  max-width:min(80vw,640px);
+  max-height:min(70vh,620px);
+  width:auto; height:auto; border-radius:12px; display:block;
+  border:1px solid #0a1630;
+}
+.lb-close{
+  position:absolute; right:-8px; top:-8px;
+  width:36px; height:36px; border-radius:10px;
+  border:2px solid #001033;
+  background:#dbe9ff; color:#001033; font-weight:700;
+  box-shadow:0 0 0 2px #001033, 0 4px 0 #001033; cursor:pointer;
+}
+.lb-close:active{ transform:translateY(2px) }
