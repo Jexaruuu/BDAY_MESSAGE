@@ -28,6 +28,26 @@
       </aside>
 
       <div class="center-stack">
+        <section class="player-wrap">
+          <div class="player" id="audioPlayer">
+            <img class="player-cover" id="playerCover" src="citylights.jpg" alt="Cover">
+            <div class="player-meta">
+              <div class="player-title" id="playerTitle">LANY — anything 4 u</div>
+              <div class="player-progress">
+                <span class="player-time" id="playerCurrent">0:00</span>
+                <div class="player-bar" id="progressBar"><span class="player-bar-fill" id="progressFill"></span></div>
+                <span class="player-time" id="playerTotal">0:00</span>
+              </div>
+            </div>
+            <div class="player-ctrls">
+              <button class="ctrl" id="prevBtn" aria-label="Previous">⏮</button>
+              <button class="ctrl" id="playBtn" aria-label="Play">▶</button>
+              <button class="ctrl" id="nextBtn" aria-label="Next">⏭</button>
+            </div>
+          </div>
+          <audio id="audio"></audio>
+        </section>
+
         <div id="gifRow" class="gif-row" aria-label="GIF gallery"></div>
 
         <section class="envelope-wrapper">

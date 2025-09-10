@@ -11,6 +11,19 @@ const envelope=document.getElementById('envelope');
 const toggleBtn=document.getElementById('toggleBtn');
 const confettiLayer=document.getElementById('confetti-layer');
 
+const playlist=[
+  {title:"LANY — anything 4 u",src:"audio/anything-4-u.mp3",cover:"citylights.jpg"},
+  {title:"LANY — ILYSB",src:"audio/ilysb.mp3",cover:"citylights.jpg"},
+  {title:"LANY — you!",src:"audio/you.mp3",cover:"citylights.jpg"},
+  {title:"LANY — Dancing in the Kitchen",src:"audio/dancing-in-the-kitchen.mp3",cover:"citylights.jpg"},
+  {title:"LANY — Cowboy in LA",src:"audio/cowboy-in-la.mp3",cover:"citylights.jpg"},
+  {title:"LANY — Like You Lots",src:"audio/like-you-lots.mp3",cover:"citylights.jpg"},
+  {title:"LANY — Pink Skies",src:"audio/pink-skies.mp3",cover:"citylights.jpg"},
+  {title:"LANY — yeah, babe, no way",src:"audio/yeah-babe-no-way.mp3",cover:"citylights.jpg"},
+  {title:"LANY — Made in Hollywood",src:"audio/made-in-hollywood.mp3",cover:"citylights.jpg"},
+  {title:"LANY — Up To Me",src:"audio/up-to-me.mp3",cover:"citylights.jpg"}
+];
+
 function buildFilm(trackEl,images,direction="up"){
   trackEl.dataset.direction=direction;
   const makeSequence=()=>{
@@ -248,6 +261,58 @@ function startCritters(){
 }
 window.addEventListener('mousemove',(e)=>{ mouse.x=e.clientX; mouse.y=e.clientY; });
 
+function initPlayer(){
+  const audio=document.getElementById('audio');
+  const cover=document.getElementById('playerCover');
+  const titleEl=document.getElementById('playerTitle');
+  const currentEl=document.getElementById('playerCurrent');
+  const totalEl=document.getElementById('playerTotal');
+  const playBtn=document.getElementById('playBtn');
+  const prevBtn=document.getElementById('prevBtn');
+  const nextBtn=document.getElementById('nextBtn');
+  const bar=document.getElementById('progressBar');
+  const fill=document.getElementById('progressFill');
+  let idx=0;
+
+  function fmt(t){ if(!isFinite(t)) return '0:00'; const m=Math.floor(t/60); const s=Math.floor(t%60); return `${m}:${s<10?'0':''}${s}`; }
+  function setPlayIcon(paused){ playBtn.textContent=paused?'▶':'❚❚'; }
+  function load(i,auto){
+    idx=(i+playlist.length)%playlist.length;
+    const tr=playlist[idx];
+    titleEl.textContent=tr.title;
+    cover.src=tr.cover||cover.src;
+    audio.src=tr.src;
+    audio.load();
+    setPlayIcon(true);
+    if(auto) audio.play().catch(()=>{});
+  }
+  function next(){ load(idx+1,true); }
+  function prev(){ load(idx-1,true); }
+
+  audio.preload='metadata';
+  audio.addEventListener('loadedmetadata',()=>{ totalEl.textContent=fmt(audio.duration); });
+  audio.addEventListener('timeupdate',()=>{
+    currentEl.textContent=fmt(audio.currentTime);
+    const r=audio.duration? audio.currentTime/audio.duration : 0;
+    fill.style.width=`${r*100}%`;
+  });
+  audio.addEventListener('ended',next);
+  audio.addEventListener('play',()=>setPlayIcon(false));
+  audio.addEventListener('pause',()=>setPlayIcon(true));
+  audio.addEventListener('error',next);
+
+  playBtn.addEventListener('click',()=>{ if(audio.paused) audio.play().catch(()=>{}); else audio.pause(); });
+  nextBtn.addEventListener('click',next);
+  prevBtn.addEventListener('click',prev);
+  bar.addEventListener('click',(e)=>{
+    const rect=bar.getBoundingClientRect();
+    const r=Math.min(1,Math.max(0,(e.clientX-rect.left)/rect.width));
+    audio.currentTime=r*(audio.duration||0);
+  });
+
+  load(0,false);
+}
+
 window.addEventListener('load',()=>{
   const leftTrack=document.getElementById('leftTrack');
   const rightTrack=document.getElementById('rightTrack');
@@ -264,4 +329,5 @@ window.addEventListener('load',()=>{
   startCritters();
 
   showCake(15);
+  initPlayer();
 });
