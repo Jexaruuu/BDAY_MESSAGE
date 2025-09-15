@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday — Hearts</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-fade-in no-extras">
+  <div class="bg-stars" aria-hidden="true"></div>
+
+  <div class="viewport">
+    <header class="hud">
+      <h1>Happy Birthday To You!</h1>
+      <h1>September 22, Monday</h1>
+      <br />
+      <p>Welcome! 💙</p>
+    </header>
+
+    <main class="stage">
+      <aside class="film film-left">
+        <div class="film-perf" aria-hidden="true"></div>
+        <div class="film-viewport">
+          <ul class="track" id="leftTrack" aria-label="Left photo film"></ul>
+        </div>
+      </aside>
+
+      <div class="center-stack">
+        <!-- same music player -->
+        <section class="player-wrap">
+          <div class="player-label"><span class="type8">Play me!</span></div>
+          <div class="player" id="audioPlayer">
+            <img class="player-cover" id="playerCover" src="citylights.jpg" alt="Cover">
+            <div class="player-meta">
+              <div class="player-title" id="playerTitle">LANY — anything 4 u</div>
+              <div class="player-progress">
+                <span class="player-time" id="playerCurrent">0:00</span>
+                <div class="player-bar" id="progressBar"><span class="player-bar-fill" id="progressFill"></span></div>
+                <span class="player-time" id="playerTotal">0:00</span>
+              </div>
+            </div>
+            <div class="player-ctrls">
+              <button class="ctrl" id="prevBtn" aria-label="Previous">⏮</button>
+              <button class="ctrl" id="playBtn" aria-label="Play">▶</button>
+              <button class="ctrl" id="nextBtn" aria-label="Next">⏭</button>
+            </div>
+          </div>
+          <audio id="audio"></audio>
+        </section>
+
+        <div id="gifRow" class="gif-row" aria-label="GIF gallery"></div>
+
+        <!-- same envelope + letter -->
+        <section class="envelope-wrapper">
+          <div class="controls-row">
+            <button id="toggleBtn" class="pixel-btn" aria-controls="envelope" aria-expanded="false">Open the envelope</button>
+          </div>
+
+          <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open birthday message">
+            <div class="envelope-shadow" aria-hidden="true"></div>
+            <div class="pocket"></div>
+            <div class="flap"></div>
+
+            <article class="letter" aria-live="polite">
+              <header class="letter-head">💙 To: Jergen! 💙</header>
+              <p class="typewriter">
+                Surprise! The page is unlocked after a wave of blue hearts. 💙<br/><br/>
+                Enjoy the music and open the envelope for your message.
+              </p>
+              <footer class="letter-foot">— From: Jex :) 💌</footer>
+            </article>
+          </div>
+        </section>
+
+        <div id="confetti-layer" aria-hidden="true"></div>
+      </div>
+
+      <aside class="film film-right">
+        <div class="film-perf" aria-hidden="true"></div>
+        <div class="film-viewport">
+          <ul class="track" id="rightTrack" aria-label="Right photo film"></ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="credits">
+      <small>💙</small>
+    </footer>
+  </div>
+
+  <!-- Blue Hearts overlay (same frosted blur as cake/puzzle) -->
+  <div id="puzzleOverlay" class="puzzle-overlay show" aria-hidden="false">
+    <div id="heartsField" class="hearts-field" aria-hidden="true"></div>
+  </div>
+
+  <div id="spaceLayer" class="space-layer" aria-hidden="true"></div>
+  <div id="swingLayer" class="swing-layer" aria-hidden="true"></div>
+  <div id="crittersLayer" class="critters-layer" aria-hidden="true"></div>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+      <div class="lb-img-wrap">
+        <img id="lbImg" alt="">
+        <span class="bubble bubble-quote" id="lbQuote"></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="puzzle.js"></script>
+</body>
+</html>
