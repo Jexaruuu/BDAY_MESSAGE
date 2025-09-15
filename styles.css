@@ -372,8 +372,6 @@ html, body{
   box-shadow:0 0 0 2px #001033;
   transform:rotate(45deg);
 }
-
-/* tiny CTA bubble on thumbnails */
 .bubble-cta{
   top:8px; right:8px;
   transform-origin:50% 50%;
@@ -384,8 +382,6 @@ html, body{
   0%,100%{ transform:scale(1) rotate(0deg) }
   50%{ transform:scale(1.06) rotate(-1deg) }
 }
-
-/* big quote bubble in lightbox */
 .bubble-quote{
   position:absolute;
   right:-6px;
@@ -395,12 +391,8 @@ html, body{
   padding:12px 14px;
 }
 .bubble-quote::after{ right:22px; bottom:-10px; }
-
-/* put CTA bubble on frames & gif tiles */
 .frame, .gif-tile{ position:relative }
 .frame .bubble-cta, .gif-tile .bubble-cta{ z-index:3 }
-
-/* Lightbox */
 .lightbox{
   position:fixed; inset:0; z-index:2500;
   display:none; place-items:center;
@@ -430,3 +422,8 @@ html, body{
   box-shadow:0 0 0 2px #001033, 0 4px 0 #001033; cursor:pointer;
 }
 .lb-close:active{ transform:translateY(2px) }
+
+/* Countdown + release button */
+.release-wrap{display:grid; gap:8px; place-items:center}
+.release-count{font-size:clamp(10px,1.6vh,12px); color:var(--blue-300)}
+.pixel-btn[disabled]{opacity:.55; filter:grayscale(20%); cursor:not-allowed}
