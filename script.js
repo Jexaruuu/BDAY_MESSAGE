@@ -340,7 +340,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); }
 function startReleaseCountdown(){
   const releaseBtn=document.getElementById('releaseBtn');
   const releaseCountdown=document.getElementById('releaseCountdown');
-  const startUTC=Date.UTC(2025,8,22,3,11,0);
+  const startUTC=Date.UTC(2025,8,22,15,11,0);
   function fmtHM(ms){
     const totalMin=Math.max(0,Math.floor(ms/60000));
     const h=Math.floor(totalMin/60);
@@ -353,12 +353,12 @@ function startReleaseCountdown(){
       releaseBtn.disabled=true;
       releaseBtn.setAttribute('aria-disabled','true');
       releaseCountdown.textContent=fmtHM(startUTC-now);
-      releaseBtn.textContent='Open me at 11:11';
+      releaseBtn.textContent='Open me at 11:11 PM';
     }else{
       releaseBtn.disabled=false;
       releaseBtn.removeAttribute('aria-disabled');
       releaseCountdown.textContent='';
-      releaseBtn.textContent='Open me at 11:11';
+      releaseBtn.textContent='Open me at 11:11 PM';
     }
   }
   releaseBtn.addEventListener('click',()=>{
