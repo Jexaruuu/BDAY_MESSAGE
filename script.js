@@ -11,33 +11,11 @@ const envelope=document.getElementById('envelope');
 const toggleBtn=document.getElementById('toggleBtn');
 const confettiLayer=document.getElementById('confetti-layer');
 
-const speechData={
-  "1.png":{cta:"tap me!",quote:"“Small moments, big smiles.”"},
-  "2.png":{cta:"click me!",quote:"“You’re doing amazing, keep going.”"},
-  "3.png":{cta:"hey, psst →",quote:"“Today is for joy (and cake).”"},
-  "4.png":{cta:"open me!",quote:"“You light up the room like city lights.”"},
-  "5.png":{cta:"tap for magic",quote:"“More laughs. More love. More you.”"},
-  "cookiesandcream.jpg":{cta:"yum?",quote:"“Life’s sweeter with you in it.”"},
-  "blueflower.jpg":{cta:"smell this",quote:"“Bloom where you’re loved.”"},
-  "coffee.jpg":{cta:"coffee?",quote:"“Let’s espresso our feelings.”"},
-  "citylights.jpg":{cta:"shine!",quote:"“Meet me where the lights feel endless.”"},
-  "moon.jpg":{cta:"look up",quote:"“To the moon and back—always.”"}
-};
-const getCTA=(src)=>(speechData[src]?.cta||"tap me!");
-const getQuote=(src)=>(speechData[src]?.quote||"“Happy birthday, keep shining!”");
+const speechData={"1.png":{cta:"tap me!",quote:"“Small moments, big smiles.”"},"2.png":{cta:"click me!",quote:"“You’re doing amazing, keep going.”"},"3.png":{cta:"hey, psst →",quote:"“Today is for joy (and cake).”"},"4.png":{cta:"open me!",quote:"“You light up the room like city lights.”"},"5.png":{cta:"tap for magic",quote:"“More laughs. More love. More you.”"},"cookiesandcream.jpg":{cta:"yum?",quote:"“Life’s sweeter with you in it.”"},"blueflower.jpg":{cta:"smell this",quote:"“Bloom where you’re loved.”"},"coffee.jpg":{cta:"coffee?",quote:"“Let’s espresso our feelings.”"},"citylights.jpg":{cta:"shine!",quote:"“Meet me where the lights feel endless.”"},"moon.jpg":{cta:"look up",quote:"“To the moon and back—always.”"}};
+const getCTA=src=>speechData[src]?.cta||"tap me!";
+const getQuote=src=>speechData[src]?.quote||"“Happy birthday, keep shining!”";
 
-const playlist=[
-  {title:"LANY — anything 4 u",src:"anything-4-u.mp3",cover:"1.jpg"},
-  {title:"LANY — ilysb",src:"ilysb.mp3",cover:"2.jpg"},
-  {title:"LANY — you!",src:"you-!.mp3",cover:"1.jpg"},
-  {title:"LANY — dancing in the kitchen",src:"dancing-in-the-kitchen.mp3",cover:"3.jpg"},
-  {title:"LANY — cowboy in la",src:"cowboy-in-la.mp3",cover:"1.jpg"},
-  {title:"LANY — like you lots",src:"like-you-lots.mp3",cover:"4.jpg"},
-  {title:"LANY — pink skies",src:"pink-skies.mp3",cover:"4.jpg"},
-  {title:"LANY — yea, babe, no way",src:"yea-babe-no-way.mp3",cover:"5.jpg"},
-  {title:"LANY — made in hollywood",src:"made-in-hollywood.mp3",cover:"6.jpg"},
-  {title:"LANY — up to me",src:"up-to-me.mp3",cover:"7.webp"}
-];
+const playlist=[{title:"LANY — anything 4 u",src:"anything-4-u.mp3",cover:"1.jpg"},{title:"LANY — ilysb",src:"ilysb.mp3",cover:"2.jpg"},{title:"LANY — you!",src:"you-!.mp3",cover:"1.jpg"},{title:"LANY — dancing in the kitchen",src:"dancing-in-the-kitchen.mp3",cover:"3.jpg"},{title:"LANY — cowboy in la",src:"cowboy-in-la.mp3",cover:"1.jpg"},{title:"LANY — like you lots",src:"like-you-lots.mp3",cover:"4.jpg"},{title:"LANY — pink skies",src:"pink-skies.mp3",cover:"4.jpg"},{title:"LANY — yea, babe, no way",src:"yea-babe-no-way.mp3",cover:"5.jpg"},{title:"LANY — made in hollywood",src:"made-in-hollywood.mp3",cover:"6.jpg"},{title:"LANY — up to me",src:"up-to-me.mp3",cover:"7.webp"}];
 
 function buildFilm(trackEl,images,direction="up"){
   trackEl.dataset.direction=direction;
@@ -375,11 +353,12 @@ function startReleaseCountdown(){
       releaseBtn.disabled=true;
       releaseBtn.setAttribute('aria-disabled','true');
       releaseCountdown.textContent=fmtHM(startUTC-now);
+      releaseBtn.textContent='Open me at 11:11';
     }else{
       releaseBtn.disabled=false;
       releaseBtn.removeAttribute('aria-disabled');
       releaseCountdown.textContent='';
-      releaseBtn.textContent='SURPRISE';
+      releaseBtn.textContent='Open me at 11:11';
     }
   }
   releaseBtn.addEventListener('click',()=>{
