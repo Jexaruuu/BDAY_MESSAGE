@@ -52,7 +52,10 @@
         <div id="gifRow" class="gif-row" aria-label="GIF gallery"></div>
 
         <section class="envelope-wrapper">
-          <button id="toggleBtn" class="pixel-btn" aria-controls="envelope" aria-expanded="false">OPEN</button>
+          <div class="controls-row">
+            <button id="toggleBtn" class="pixel-btn" aria-controls="envelope" aria-expanded="false">OPEN</button>
+            <button id="releaseBtn" class="pixel-btn" disabled aria-disabled="true">SURPRISE • <span id="releaseCountdown">--:--</span></button>
+          </div>
 
           <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open birthday message">
             <div class="envelope-shadow" aria-hidden="true"></div>
@@ -68,11 +71,6 @@
               </p>
               <footer class="letter-foot">— From: Jex :) 💌</footer>
             </article>
-          </div>
-
-          <div class="release-wrap">
-            <div id="releaseCountdown" class="release-count" aria-live="polite">Calculating…</div>
-            <button id="releaseBtn" class="pixel-btn" disabled aria-disabled="true">SURPRISE</button>
           </div>
         </section>
 

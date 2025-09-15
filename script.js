@@ -11,17 +11,17 @@ const envelope=document.getElementById('envelope');
 const toggleBtn=document.getElementById('toggleBtn');
 const confettiLayer=document.getElementById('confetti-layer');
 
-const speechData = {
-  "1.png": { cta: "tap me!", quote: "“Small moments, big smiles.”" },
-  "2.png": { cta: "click me!", quote: "“You’re doing amazing, keep going.”" },
-  "3.png": { cta: "hey, psst →", quote: "“Today is for joy (and cake).”" },
-  "4.png": { cta: "open me!", quote: "“You light up the room like city lights.”" },
-  "5.png": { cta: "tap for magic", quote: "“More laughs. More love. More you.”" },
-  "cookiesandcream.jpg": { cta: "yum?", quote: "“Life’s sweeter with you in it.”" },
-  "blueflower.jpg": { cta: "smell this", quote: "“Bloom where you’re loved.”" },
-  "coffee.jpg": { cta: "coffee?", quote: "“Let’s espresso our feelings.”" },
-  "citylights.jpg": { cta: "shine!", quote: "“Meet me where the lights feel endless.”" },
-  "moon.jpg": { cta: "look up", quote: "“To the moon and back—always.”" }
+const speechData={
+  "1.png":{cta:"tap me!",quote:"“Small moments, big smiles.”"},
+  "2.png":{cta:"click me!",quote:"“You’re doing amazing, keep going.”"},
+  "3.png":{cta:"hey, psst →",quote:"“Today is for joy (and cake).”"},
+  "4.png":{cta:"open me!",quote:"“You light up the room like city lights.”"},
+  "5.png":{cta:"tap for magic",quote:"“More laughs. More love. More you.”"},
+  "cookiesandcream.jpg":{cta:"yum?",quote:"“Life’s sweeter with you in it.”"},
+  "blueflower.jpg":{cta:"smell this",quote:"“Bloom where you’re loved.”"},
+  "coffee.jpg":{cta:"coffee?",quote:"“Let’s espresso our feelings.”"},
+  "citylights.jpg":{cta:"shine!",quote:"“Meet me where the lights feel endless.”"},
+  "moon.jpg":{cta:"look up",quote:"“To the moon and back—always.”"}
 };
 const getCTA=(src)=>(speechData[src]?.cta||"tap me!");
 const getQuote=(src)=>(speechData[src]?.quote||"“Happy birthday, keep shining!”");
@@ -36,7 +36,7 @@ const playlist=[
   {title:"LANY — pink skies",src:"pink-skies.mp3",cover:"4.jpg"},
   {title:"LANY — yea, babe, no way",src:"yea-babe-no-way.mp3",cover:"5.jpg"},
   {title:"LANY — made in hollywood",src:"made-in-hollywood.mp3",cover:"6.jpg"},
-  {title:"LANY — up to me",src:"up-to-me.mp3",cover:"7.webp"},
+  {title:"LANY — up to me",src:"up-to-me.mp3",cover:"7.webp"}
 ];
 
 function buildFilm(trackEl,images,direction="up"){
@@ -56,7 +56,7 @@ function buildFilm(trackEl,images,direction="up"){
       b.className='bubble bubble-cta';
       b.textContent=getCTA(src);
       li.appendChild(b);
-      li.addEventListener('click',()=> openLightbox(src, getQuote(src)));
+      li.addEventListener('click',()=>openLightbox(src,getQuote(src)));
       frag.appendChild(li);
     });
     return frag;
@@ -84,7 +84,7 @@ function buildGifRow(container,gifs){
     b.className='bubble bubble-cta';
     b.textContent=getCTA(src);
     tile.appendChild(b);
-    tile.addEventListener('click',()=> openLightbox(src, getQuote(src)));
+    tile.addEventListener('click',()=>openLightbox(src,getQuote(src)));
     container.appendChild(tile);
   });
 }
@@ -140,7 +140,7 @@ function burstConfetti(count=50){
 }
 
 envelope.addEventListener('click',()=>toggleEnvelope());
-envelope.addEventListener('keydown',(e)=>{
+envelope.addEventListener('keydown',e=>{
   const k=e.key.toLowerCase();
   if(k==='enter'||k===' '){
     e.preventDefault();
@@ -148,10 +148,10 @@ envelope.addEventListener('keydown',(e)=>{
   }
 });
 toggleBtn.addEventListener('click',()=>toggleEnvelope());
-document.addEventListener('keydown',(e)=>{ if(e.key.toLowerCase()==='o') toggleEnvelope(); });
+document.addEventListener('keydown',e=>{ if(e.key.toLowerCase()==='o') toggleEnvelope(); });
 
-window.addEventListener('wheel',(e)=>e.preventDefault(),{passive:false});
-window.addEventListener('touchmove',(e)=>e.preventDefault(),{passive:false});
+window.addEventListener('wheel',e=>e.preventDefault(),{passive:false});
+window.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
 
 function makeHeroImg(kind){
   const img=document.createElement('img');
@@ -267,24 +267,24 @@ function startCritters(){
   const speedCat=0.18;
   const speedRabbit=0.12;
   const step=()=>{
-    cat.x+= (mouse.x+cat.tx - cat.x)*speedCat;
-    cat.y+= (mouse.y+cat.ty - cat.y)*speedCat;
-    rabbit.x+= (mouse.x+rabbit.tx - rabbit.x)*speedRabbit;
-    rabbit.y+= (mouse.y+rabbit.ty - rabbit.y)*speedRabbit;
-    const catDir = (mouse.x - cat.x)>=0 ? 1 : -1;
-    const rabDir = (mouse.x - rabbit.x)>=0 ? 1 : -1;
+    cat.x+=(mouse.x+cat.tx-cat.x)*speedCat;
+    cat.y+=(mouse.y+cat.ty-cat.y)*speedCat;
+    rabbit.x+=(mouse.x+rabbit.tx-rabbit.x)*speedRabbit;
+    rabbit.y+=(mouse.y+rabbit.ty-rabbit.y)*speedRabbit;
+    const catDir=(mouse.x-cat.x)>=0?1:-1;
+    const rabDir=(mouse.x-rabbit.x)>=0?1:-1;
     cat.el.style.left=`${cat.x}px`;
-    cat.el.style.top =`${cat.y}px`;
+    cat.el.style.top=`${cat.y}px`;
     cat.el.style.transform=`translate(-50%,-50%) scaleX(${catDir})`;
     rabbit.el.style.left=`${rabbit.x}px`;
-    rabbit.el.style.top =`${rabbit.y}px`;
+    rabbit.el.style.top=`${rabbit.y}px`;
     rabbit.el.style.transform=`translate(-50%,-50%) scaleX(${rabDir})`;
     rafId=requestAnimationFrame(step);
   };
   if(rafId) cancelAnimationFrame(rafId);
   rafId=requestAnimationFrame(step);
 }
-window.addEventListener('mousemove',(e)=>{ mouse.x=e.clientX; mouse.y=e.clientY; });
+window.addEventListener('mousemove',e=>{ mouse.x=e.clientX; mouse.y=e.clientY; });
 
 function initPlayer(){
   const audio=document.getElementById('audio');
@@ -329,7 +329,7 @@ function initPlayer(){
   playBtn.addEventListener('click',()=>{ if(audio.paused) audio.play().catch(()=>{}); else audio.pause(); });
   nextBtn.addEventListener('click',next);
   prevBtn.addEventListener('click',prev);
-  bar.addEventListener('click',(e)=>{
+  bar.addEventListener('click',e=>{
     const rect=bar.getBoundingClientRect();
     const r=Math.min(1,Math.max(0,(e.clientX-rect.left)/rect.width));
     audio.currentTime=r*(audio.duration||0);
@@ -356,34 +356,30 @@ function closeLightbox(){
   lbImg.removeAttribute('src');
 }
 lbClose.addEventListener('click',closeLightbox);
-lightbox.addEventListener('click',(e)=>{ if(e.target===lightbox) closeLightbox(); });
-document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeLightbox(); });
+lightbox.addEventListener('click',e=>{ if(e.target===lightbox) closeLightbox(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); });
 
 function startReleaseCountdown(){
   const releaseBtn=document.getElementById('releaseBtn');
   const releaseCountdown=document.getElementById('releaseCountdown');
-  const startUTC=Date.UTC(2025,8,22,3,0,0);
-  const endUTC=Date.UTC(2025,8,22,15,0,0);
-  function fmt(ms){
-    let s=Math.max(0,Math.floor(ms/1000));
-    const h=Math.floor(s/3600); s%=3600;
-    const m=Math.floor(s/60); s%=60;
-    return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  const startUTC=Date.UTC(2025,8,22,3,11,0);
+  function fmtHM(ms){
+    const totalMin=Math.max(0,Math.floor(ms/60000));
+    const h=Math.floor(totalMin/60);
+    const m=totalMin%60;
+    return `${h}:${String(m).padStart(2,'0')}`;
   }
   function sync(){
     const now=Date.now();
     if(now<startUTC){
       releaseBtn.disabled=true;
       releaseBtn.setAttribute('aria-disabled','true');
-      releaseCountdown.textContent=`${fmt(startUTC-now)} until 11:00 AM (Asia/Manila)`;
-    }else if(now<=endUTC){
+      releaseCountdown.textContent=fmtHM(startUTC-now);
+    }else{
       releaseBtn.disabled=false;
       releaseBtn.removeAttribute('aria-disabled');
-      releaseCountdown.textContent=`Time left: ${fmt(endUTC-now)}`;
-    }else{
-      releaseBtn.disabled=true;
-      releaseBtn.setAttribute('aria-disabled','true');
-      releaseCountdown.textContent=`Closed`;
+      releaseCountdown.textContent='';
+      releaseBtn.textContent='SURPRISE';
     }
   }
   releaseBtn.addEventListener('click',()=>{
@@ -391,7 +387,7 @@ function startReleaseCountdown(){
     burstConfetti(120);
   });
   sync();
-  setInterval(sync,500);
+  setInterval(sync,1000);
 }
 
 window.addEventListener('load',()=>{
