@@ -86,14 +86,14 @@ function toggleEnvelope(open){
     isOpen=true;
     envelope.classList.toggle('is-open',true);
     toggleBtn.setAttribute('aria-expanded','true');
-    toggleBtn.textContent='CLOSE';
+    toggleBtn.textContent='Close the envelope';
     burstConfetti(60);
     return;
   }
   isOpen=wantOpen;
   envelope.classList.toggle('is-open',isOpen);
   toggleBtn.setAttribute('aria-expanded',String(isOpen));
-  toggleBtn.textContent=isOpen?'CLOSE':'OPEN';
+  toggleBtn.textContent=isOpen?'Close the envelope':'Open the envelope';
   if(isOpen) burstConfetti(60);
 }
 
