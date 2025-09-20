@@ -1,6 +1,6 @@
 const leftImages=["venti.png","blueheart.png","gwenplushie.png","blue.png","kitties.png"];
 const rightImages=["kitties.png","blue.png","gwenplushie.png","blueheart.png","venti.png"];
-const centerGifs=["cookiesandcream.jpg","blueflower.jpg","coffee.jpg","citylights.jpg","moon.jpg"];
+const centerGifs=["cookiesandcream.jpg","blueflower.jpg","coffee.jpg","citylights.jpg","moon.jpg","frenchfries.jpg","gwenstacy.jpg", "ac.jpg","bcdtomnl.jpg"];
 const gwenPNG="gwen.png", milesPNG="miles.png", yodaPNG="yoda.png";
 const catPNG="cat.gif", rabbitPNG="rabbit.gif";
 const heroConfig={gwen:{tiltDeg:-8,offsetX:-22,offsetY:0,scale:2.00},miles:{tiltDeg:6,offsetX:25,offsetY:-5,scale:1.00}};
@@ -10,11 +10,11 @@ const speechData={
   "gwenplushie.png":{cta:"Plushie!",quote:"“Gwen Stacy plushie for you 💙.”"},
   "blue.png":{cta:"Flowers!",quote:"“I hope you like this blue flowers.”"},
   "kitties.png":{cta:"Kitties!",quote:"“Here are some cute kitties for you.”"},
-  "cookiesandcream.jpg":{cta:"yum?",quote:"“Life’s sweeter with you in it.”"},
-  "blueflower.jpg":{cta:"smell this",quote:"“Bloom where you’re loved.”"},
-  "coffee.jpg":{cta:"coffee?",quote:"“Let’s espresso our feelings.”"},
-  "citylights.jpg":{cta:"shine!",quote:"“Meet me where the lights feel endless.”"},
-  "moon.jpg":{cta:"look up",quote:"“To the moon and back—always.”"},
+  "cookiesandcream.jpg":{cta:"Cookies & Cream!",quote:"“Mag a-ice cream pa tayo ha!”"},
+  "frenchfries.jpg":{cta:"French Fries!",quote:"“Naalala mo pa to?”"},
+  "gwenstacy.jpg":{cta:"Gwen Stacy!",quote:"“Si Gwen Stacy muna mag babantay sayo oki!”"},
+  "ac.jpg":{cta:"Best day!",quote:"“Never Forget tong moment na to, Promise!”"},
+  "bcdtomnl.jpg":{cta:"BCD to MNL",quote:"“Worth it!, Kahit na saglit lang kita nakita.”"},
 
   "tats1.jpg":{cta:"Happyyyyy",quote:"“Ang cute nyan nung natapos huhu”"},
   "tats2.jpg":{cta:"Jergeeeeen",quote:"“Baka akala mo nakalimutan ko na?”"},
