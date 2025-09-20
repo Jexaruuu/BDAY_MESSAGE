@@ -16,6 +16,9 @@ const ENABLE_SPACESHIP=true;
 
 const SKIP_INTRO=(()=>{try{return sessionStorage.getItem('fromSpecialEnvelope')==='1';}catch(e){return false;}})();
 
+// Target unlock time: 2025-09-22 23:11:00 Asia/Manila (+08:00)
+const RELEASE_TS = Date.parse('2025-09-22T23:11:00+08:00');
+
 const speechData={"1.png":{cta:"tap me!",quote:"“Small moments, big smiles.”"},"2.png":{cta:"click me!",quote:"“You’re doing amazing, keep going.”"},"3.png":{cta:"hey, psst →",quote:"“Today is for joy (and cake).”"},"4.png":{cta:"open me!",quote:"“You light up the room like city lights.”"},"5.png":{cta:"tap for magic",quote:"“More laughs. More love. More you.”"},"cookiesandcream.jpg":{cta:"yum?",quote:"“Life’s sweeter with you in it.”"},"blueflower.jpg":{cta:"smell this",quote:"“Bloom where you’re loved.”"},"coffee.jpg":{cta:"coffee?",quote:"“Let’s espresso our feelings.”"},"citylights.jpg":{cta:"shine!",quote:"“Meet me where the lights feel endless.”"},"moon.jpg":{cta:"look up",quote:"“To the moon and back—always.”"}};
 const getCTA=src=>speechData[src]?.cta||"tap me!";
 const getQuote=src=>speechData[src]?.quote||"“Happy birthday, keep shining!”";
@@ -356,15 +359,52 @@ lbClose.addEventListener('click',closeLightbox);
 lightbox.addEventListener('click',e=>{ if(e.target===lightbox) closeLightbox(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); });
 
+// Countdown + gate logic
 function startReleaseCountdown(){
   const releaseBtn=document.getElementById('releaseBtn');
   const releaseCountdown=document.getElementById('releaseCountdown');
+  const unlockTimer=document.getElementById('unlockTimer');
+  let intervalId=null;
 
+  function fmt2(n){ n=Math.max(0,Math.floor(n)); return n<10?`0${n}`:`${n}`; }
+  function formatDHMS(ms){
+    const total = Math.max(0, Math.floor(ms/1000));
+    const d = Math.floor(total/86400);
+    const h = Math.floor((total%86400)/3600);
+    const m = Math.floor((total%3600)/60);
+    const s = total%60;
+    return `${fmt2(d)}d ${fmt2(h)}h ${fmt2(m)}m ${fmt2(s)}s`;
+  }
+
+  function setDisabledState(){
+    releaseBtn.disabled=true;
+    releaseBtn.setAttribute('aria-disabled','true');
+  }
   function enableReleaseNow(){
     releaseBtn.disabled=false;
     releaseBtn.removeAttribute('aria-disabled');
-    releaseCountdown.textContent='';
-    releaseBtn.textContent='Open Special Envelope at 11:11 PM';
+    if (releaseCountdown){
+      releaseCountdown.textContent='';
+    }
+  }
+
+  function tick(){
+    const now = Date.now();
+    const diff = RELEASE_TS - now;
+    const text = formatDHMS(diff);
+    if (unlockTimer) unlockTimer.textContent = text;
+    if (releaseCountdown){
+      releaseCountdown.textContent = diff>0 ? ` — ${text}` : '';
+      releaseCountdown.style.display = diff>0 ? 'inline' : '';
+    }
+    if (diff<=0){
+      enableReleaseNow();
+      clearInterval(intervalId);
+      intervalId=null;
+      if (unlockTimer) unlockTimer.textContent = '00d 00h 00m 00s';
+    } else {
+      setDisabledState();
+    }
   }
 
   releaseBtn.addEventListener('click',()=>{
@@ -374,8 +414,9 @@ function startReleaseCountdown(){
     setTimeout(()=>{ window.location.href='specialenvelope.html'; },320);
   });
 
-  enableReleaseNow();
-  window.__enableReleaseNow__=enableReleaseNow;
+  tick();
+  intervalId = setInterval(tick,1000);
+  window.__enableReleaseNow__ = enableReleaseNow; // keep for compatibility
 }
 
 window.addEventListener('load',()=>{
@@ -397,6 +438,7 @@ window.addEventListener('load',()=>{
     showCake(15);
     startReleaseCountdown();
   }else{
+    // Keep original enable path, but countdown will immediately correct the state if it's not yet time
     if (typeof window.__enableReleaseNow__ === 'function') {
       window.__enableReleaseNow__();
     } else {
@@ -410,6 +452,7 @@ window.addEventListener('load',()=>{
       }
     }
     try{sessionStorage.removeItem('fromEspecialEnvelope');}catch(e){}
+    startReleaseCountdown();
   }
 
   initPlayer();
@@ -448,6 +491,7 @@ window.addEventListener('load',()=>{
       }
     }
     try{sessionStorage.removeItem('fromSpecialEnvelope');}catch(e){}
+    startReleaseCountdown();
   }
 
   initPlayer();
