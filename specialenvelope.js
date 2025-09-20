@@ -1,6 +1,6 @@
 const leftImages=["venti.png","blueheart.png","gwenplushie.png","blue.png","kitties.png"];
 const rightImages=["kitties.png","blue.png","gwenplushie.png","blueheart.png","venti.png"];
-const centerGifs=["cookiesandcream.jpg","frenchfries.jpg","gwenstacy.jpg", "ac.jpg","bcdtomnl.jpg"];
+const centerGifs=["cookiesandcream.jpg","frenchfries.jpg","gwenstacy.jpg","ac.jpg","bcdtomnl.jpg"];
 const gwenPNG="gwen.png", milesPNG="miles.png", yodaPNG="yoda.png";
 const catPNG="cat.gif", rabbitPNG="rabbit.gif";
 const heroConfig={gwen:{tiltDeg:-8,offsetX:-22,offsetY:0,scale:2.00},miles:{tiltDeg:6,offsetX:25,offsetY:-5,scale:1.00}};
@@ -15,7 +15,6 @@ const speechData={
   "gwenstacy.jpg":{cta:"GwenStacy!",quote:"“Si Gwen Stacy muna mag babantay sayo oki!”"},
   "ac.jpg":{cta:"Bestday!",quote:"“Never Forget tong moment na to, Promise!”"},
   "bcdtomnl.jpg":{cta:"BCDtoMNL",quote:"“Worth it!, Kahit na saglit lang kita nakita.”"},
-
   "tats1.jpg":{cta:"Happyyyyy",quote:"“Ang cute nyan nung natapos huhu”"},
   "tats2.jpg":{cta:"Jergeeeeen",quote:"“Baka akala mo nakalimutan ko na?”"},
   "tats3.jpg":{cta:"Birthdayyyyy!",quote:"“Pa'no ba yan? lagi na kitang maalala pag makikita to ko.”"}
@@ -27,7 +26,7 @@ const playlist=[
   {title:"1550 Collective — G luv 2",src:"g-luv-2.mp3",cover:"gluv2.jpg"},
   {title:"IV of Spades — Aura",src:"aura.mp3",cover:"aura.jpg"},
   {title:"Yden — Ngalan mo",src:"ngalan-mo.mp3",cover:"ngalanmo.jpg"},
-  {title:"Dionela — Oksihina",src:"oksihina.mp3",cover:"oksihina.jpg"}, 
+  {title:"Dionela — Oksihina",src:"oksihina.mp3",cover:"oksihina.jpg"},
   {title:"Kiyo — Eba",src:"eba.mp3",cover:"eba.jpg"},
   {title:"Kiyo — Hanap",src:"hanap.mp3",cover:"hanap.jpg"},
   {title:"Kylu & Yamada — Otw",src:"otw.mp3",cover:"otw.jpg"},
@@ -51,6 +50,7 @@ function buildFilm(trackEl,images,direction="up"){
       img.loading='lazy'; img.decoding='async'; img.alt=`${direction} film photo ${i+1}`; img.src=src;
       li.appendChild(img);
       const b=document.createElement('span'); b.className='bubble bubble-cta'; b.textContent=getCTA(src);
+      b.style.fontSize='9px'; b.style.lineHeight='1.25';
       li.appendChild(b);
       li.addEventListener('click',()=>openLightbox(src,getQuote(src)));
       frag.appendChild(li);
@@ -70,6 +70,7 @@ function buildGifRow(container,gifs){
     const img=document.createElement('img'); img.alt=`gif ${i+1}`; img.loading='lazy'; img.decoding='async'; img.src=src;
     tile.appendChild(img);
     const b=document.createElement('span'); b.className='bubble bubble-cta'; b.textContent=getCTA(src);
+    b.style.fontSize='9px'; b.style.lineHeight='1.25';
     tile.appendChild(b);
     tile.addEventListener('click',()=>openLightbox(src,getQuote(src)));
     container.appendChild(tile);
@@ -82,6 +83,7 @@ const lbQuote=document.getElementById('lbQuote');
 const lbClose=document.getElementById('lbClose');
 function openLightbox(src,quote){
   lbImg.src=src; lbImg.alt='Selected photo'; lbQuote.textContent=quote;
+  lbQuote.style.fontSize='11px'; lbQuote.style.lineHeight='1.35';
   lightbox.classList.add('show'); lightbox.setAttribute('aria-hidden','false');
 }
 function closeLightbox(){
@@ -111,12 +113,10 @@ function burstConfetti(count=120){
 const swingLayer=document.getElementById('swingLayer');
 const spaceLayer=document.getElementById('spaceLayer');
 const crittersLayer=document.getElementById('crittersLayer');
-let nextKindIndex=0, isSwinging=false; 
+let nextKindIndex=0, isSwinging=false;
 const kinds=['gwen','miles'];
 const SWING_ENABLED = !document.body.classList.contains('no-swing');
-// If swinging is disabled for this page, mark as "busy" so spawn never starts
 if (!SWING_ENABLED) isSwinging = true;
-
 
 function makeHeroImg(kind){
   const img=document.createElement('img'); img.alt=kind==='gwen'?'Gwen Stacy':'Miles Morales';
@@ -264,6 +264,7 @@ function openSurprise(){
     img.src=src;
     tile.appendChild(img);
     const b=document.createElement('span'); b.className='bubble bubble-cta'; b.textContent=getCTA(src);
+    b.style.fontSize='9px'; b.style.lineHeight='1.25';
     tile.appendChild(b);
     tile.addEventListener('click',()=>{
       openLightbox(src,getQuote(src));
@@ -293,7 +294,7 @@ window.addEventListener('load',()=>{
   buildFilm(leftTrack,leftImages,"down");
   buildFilm(rightTrack,rightImages,"up");
   buildGifRow(gifRow,centerGifs);
-if (SWING_ENABLED) startSwingLoop();
+  if (SWING_ENABLED) startSwingLoop();
   createSpaceship();
   startCritters();
   initPlayer();
