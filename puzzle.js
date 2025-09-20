@@ -1,26 +1,27 @@
-/* ---------- shared galleries / assets (same content as index) ---------- */
-const leftImages=["1.png","2.png","3.png","4.png","5.png"];
-const rightImages=["5.png","4.png","3.png","2.png","1.png"];
+const leftImages=["venti.png","blueheart.png","gwenplushie.png","blue.png","kitties.png"];
+const rightImages=["blue.png","gwenplushie.png","blueheart.png","venti.png"];
 const centerGifs=["cookiesandcream.jpg","blueflower.jpg","coffee.jpg","citylights.jpg","moon.jpg"];
 const gwenPNG="gwen.png", milesPNG="miles.png", yodaPNG="yoda.png";
 const catPNG="cat.gif", rabbitPNG="rabbit.gif";
 const heroConfig={gwen:{tiltDeg:-8,offsetX:-22,offsetY:0,scale:2.00},miles:{tiltDeg:6,offsetX:25,offsetY:-5,scale:1.00}};
-
 const speechData={
-  "1.png":{cta:"tap me!",quote:"“Small moments, big smiles.”"},
-  "2.png":{cta:"click me!",quote:"“You’re doing amazing, keep going.”"},
-  "3.png":{cta:"hey, psst →",quote:"“Today is for joy (and cake).”"},
-  "4.png":{cta:"open me!",quote:"“You light up the room like city lights.”"},
-  "5.png":{cta:"tap for magic",quote:"“More laughs. More love. More you.”"},
+  "venti.png":{cta:"tap me!",quote:"”Here's your venti cup of iced spanish latte with cinammon powder. Enjoy!”"},
+  "blueheart.png":{cta:"click me!",quote:"“Here's a blue heart for you.”"},
+  "gwenplushie.png":{cta:"open me!",quote:"“Gwen Stacy plushie for you 💙.”"},
+  "blue.png":{cta:"tap for magic",quote:"“I hope you like this blue flowers.”"},
+  "kitties.png":{cta:"look at these",quote:"“Here are some cute kitties for you.”"},
   "cookiesandcream.jpg":{cta:"yum?",quote:"“Life’s sweeter with you in it.”"},
   "blueflower.jpg":{cta:"smell this",quote:"“Bloom where you’re loved.”"},
   "coffee.jpg":{cta:"coffee?",quote:"“Let’s espresso our feelings.”"},
   "citylights.jpg":{cta:"shine!",quote:"“Meet me where the lights feel endless.”"},
-  "moon.jpg":{cta:"look up",quote:"“To the moon and back—always.”"}
+  "moon.jpg":{cta:"look up",quote:"“To the moon and back—always.”"},
+
+  "tats1.jpg":{cta:"Happyyyyy",quote:"“Ang cute nyan nung natapos huhu”"},
+  "tats2.jpg":{cta:"Jergeeeeen",quote:"“Baka akala mo nakalimutan ko na?”"},
+  "tats3.jpg":{cta:"Birthdayyyyy!",quote:"“Pero ang sakit hahahahhaa!”"}
 };
 const getCTA=src=>speechData[src]?.cta||"tap me!";
 const getQuote=src=>speechData[src]?.quote||"“Happy birthday, keep shining!”";
-
 const playlist=[
   {title:"LANY — anything 4 u",src:"anything-4-u.mp3",cover:"1.jpg"},
   {title:"LANY — ilysb",src:"ilysb.mp3",cover:"2.jpg"},
@@ -34,7 +35,6 @@ const playlist=[
   {title:"LANY — up to me",src:"up-to-me.mp3",cover:"7.webp"}
 ];
 
-/* ---------- film strips + gifs + lightbox ---------- */
 function buildFilm(trackEl,images,direction="up"){
   trackEl.dataset.direction=direction;
   const makeSequence=()=>{
@@ -87,7 +87,6 @@ lbClose.addEventListener('click',closeLightbox);
 lightbox.addEventListener('click',e=>{ if(e.target===lightbox) closeLightbox(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); });
 
-/* ---------- confetti ---------- */
 const confettiLayer=document.getElementById('confetti-layer');
 function burstConfetti(count=120){
   const colors=['#9ec0ff','#5b92ff','#cfe1ff','#ffffff'];
@@ -104,7 +103,6 @@ function burstConfetti(count=120){
   }
 }
 
-/* ---------- swingers, ship, critters ---------- */
 const swingLayer=document.getElementById('swingLayer');
 const spaceLayer=document.getElementById('spaceLayer');
 const crittersLayer=document.getElementById('crittersLayer');
@@ -156,7 +154,7 @@ function startCritters(){
     rabbit.x+=(mouse.x+rabbit.tx-rabbit.x)*speedRabbit; rabbit.y+=(mouse.y+rabbit.ty-rabbit.y)*speedRabbit;
     const cDir=(mouse.x-cat.x)>=0?1:-1, rDir=(mouse.x-rabbit.x)>=0?1:-1;
     cat.el.style.left=`${cat.x}px`; cat.el.style.top=`${cat.y}px`; cat.el.style.transform=`translate(-50%,-50%) scaleX(${cDir})`;
-    rabbit.el.style.left=`${rabbit.y}px`; rabbit.el.style.top=`${rabbit.y}px`; // keep as-is style (no removal)
+    rabbit.el.style.left=`${rabbit.y}px`; rabbit.el.style.top=`${rabbit.y}px`;
     rabbit.el.style.left=`${rabbit.x}px`; rabbit.el.style.top=`${rabbit.y}px`; rabbit.el.style.transform=`translate(-50%,-50%) scaleX(${rDir})`;
     rafId=requestAnimationFrame(step);
   };
@@ -164,7 +162,6 @@ function startCritters(){
 }
 window.addEventListener('mousemove',e=>{ mouse.x=e.clientX; mouse.y=e.clientY; });
 
-/* ---------- audio player ---------- */
 function initPlayer(){
   const audio=document.getElementById('audio');
   const cover=document.getElementById('playerCover');
@@ -177,7 +174,6 @@ function initPlayer(){
   const bar=document.getElementById('progressBar');
   const fill=document.getElementById('progressFill');
   let idx=0;
-
   function fmt(t){ if(!isFinite(t)) return '0:00'; const m=Math.floor(t/60); const s=Math.floor(t%60); return `${m}:${s<10?'0':''}${s}`; }
   function setPlayIcon(paused){ playBtn.textContent=paused?'▶':'❚❚'; }
   function load(i,auto){
@@ -197,7 +193,6 @@ function initPlayer(){
   load(0,false);
 }
 
-/* ---------- envelope + letter ---------- */
 const envelope=document.getElementById('envelope');
 const toggleBtn=document.getElementById('toggleBtn');
 let isOpen=false;
@@ -213,21 +208,18 @@ envelope.addEventListener('click',()=>toggleEnvelope());
 envelope.addEventListener('keydown',e=>{ const k=e.key.toLowerCase(); if(k==='enter'||k===' '){ e.preventDefault(); toggleEnvelope(); }});
 toggleBtn.addEventListener('click',()=>toggleEnvelope());
 
-/* ---------- HEARTS OVERLAY (6s) ---------- */
 const overlay=document.getElementById('puzzleOverlay');
 const heartsField=document.getElementById('heartsField');
-
 function spawnHearts(count=48){
   heartsField.innerHTML="";
   const w=window.innerWidth, h=window.innerHeight;
-
   for(let i=0;i<count;i++){
     const d=document.createElement('div');
     d.className='blue-heart';
-    const size=12+Math.random()*22;        // 12px - 34px
-    const left=Math.random()*w;            // anywhere across
-    const delay=-(Math.random()*2);        // some already mid-flight
-    const dur=3+Math.random()*3;           // 3s - 6s
+    const size=12+Math.random()*22;
+    const left=Math.random()*w;
+    const delay=-(Math.random()*2);
+    const dur=3+Math.random()*3;
     d.style.setProperty('--size', `${size}px`);
     d.style.setProperty('--x', `${left}px`);
     d.style.setProperty('--dur', `${dur}s`);
@@ -235,7 +227,6 @@ function spawnHearts(count=48){
     heartsField.appendChild(d);
   }
 }
-
 function startHeartsIntro(ms=6000){
   overlay.classList.add('show');
   overlay.setAttribute('aria-hidden','false');
@@ -246,21 +237,55 @@ function startHeartsIntro(ms=6000){
   }, ms);
 }
 
-/* ---------- boot ---------- */
+const surpriseBtn=document.getElementById('surpriseBtn');
+const surpriseBox=document.getElementById('surprise');
+const surpriseGrid=document.getElementById('surpriseGrid');
+const spClose=document.getElementById('spClose');
+const surpriseImages=["tats2.jpg","tats1.jpg","tats3.jpg"];
+function openSurprise(){
+  surpriseGrid.innerHTML="";
+  surpriseImages.forEach((src,i)=>{
+    const tile=document.createElement('div');
+    tile.className='gif-tile';
+    const img=document.createElement('img');
+    img.alt=`surprise ${i+1}`;
+    img.loading='lazy';
+    img.decoding='async';
+    img.src=src;
+    tile.appendChild(img);
+    const b=document.createElement('span'); b.className='bubble bubble-cta'; b.textContent=getCTA(src);
+    tile.appendChild(b);
+    tile.addEventListener('click',()=>{
+      openLightbox(src,getQuote(src));
+      closeSurprise();
+      surpriseGrid.innerHTML="";
+    });
+    surpriseGrid.appendChild(tile);
+  });
+  surpriseBox.classList.add('show');
+  surpriseBox.setAttribute('aria-hidden','false');
+  surpriseBtn.setAttribute('aria-expanded','true');
+}
+function closeSurprise(){
+  surpriseBox.classList.remove('show');
+  surpriseBox.setAttribute('aria-hidden','true');
+  surpriseBtn.setAttribute('aria-expanded','false');
+}
+surpriseBtn.addEventListener('click',openSurprise);
+spClose.addEventListener('click',closeSurprise);
+surpriseBox.addEventListener('click',e=>{ if(e.target===surpriseBox) closeSurprise(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeSurprise(); });
+
 window.addEventListener('load',()=>{
   const leftTrack=document.getElementById('leftTrack');
   const rightTrack=document.getElementById('rightTrack');
   const gifRow=document.getElementById('gifRow');
-
   buildFilm(leftTrack,leftImages,"down");
   buildFilm(rightTrack,rightImages,"up");
   buildGifRow(gifRow,centerGifs);
-
   startSwingLoop();
   createSpaceship();
   startCritters();
   initPlayer();
-
-  // 6-second hearts intro
   startHeartsIntro(6000);
 });

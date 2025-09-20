@@ -1,5 +1,5 @@
-const leftImages=["venti.png","2.png","3.png","4.png","5.png"];
-const rightImages=["5.png","4.png","3.png","2.png","venti.png"];
+const leftImages=["1.png","2.png","3.png","4.png","5.png"];
+const rightImages=["5.png","4.png","3.png","2.png","1.png"];
 const centerGifs=["cookiesandcream.jpg","blueflower.jpg","coffee.jpg","citylights.jpg","moon.jpg"];
 const gwenPNG="gwen.png";
 const milesPNG="miles.png";
@@ -11,9 +11,8 @@ const envelope=document.getElementById('envelope');
 const toggleBtn=document.getElementById('toggleBtn');
 const confettiLayer=document.getElementById('confetti-layer');
 
-/* ---- NEW FLAGS ---- */
-const ENABLE_CRITTERS=false;   // show only Yoda + Gwen + Miles on the first page
-const ENABLE_SPACESHIP=true;   // keep the single Yoda ship
+const ENABLE_CRITTERS=false;
+const ENABLE_SPACESHIP=true;
 
 const speechData={"1.png":{cta:"tap me!",quote:"“Small moments, big smiles.”"},"2.png":{cta:"click me!",quote:"“You’re doing amazing, keep going.”"},"3.png":{cta:"hey, psst →",quote:"“Today is for joy (and cake).”"},"4.png":{cta:"open me!",quote:"“You light up the room like city lights.”"},"5.png":{cta:"tap for magic",quote:"“More laughs. More love. More you.”"},"cookiesandcream.jpg":{cta:"yum?",quote:"“Life’s sweeter with you in it.”"},"blueflower.jpg":{cta:"smell this",quote:"“Bloom where you’re loved.”"},"coffee.jpg":{cta:"coffee?",quote:"“Let’s espresso our feelings.”"},"citylights.jpg":{cta:"shine!",quote:"“Meet me where the lights feel endless.”"},"moon.jpg":{cta:"look up",quote:"“To the moon and back—always.”"}};
 const getCTA=src=>speechData[src]?.cta||"tap me!";
@@ -90,7 +89,7 @@ const spaceLayer=document.getElementById('spaceLayer');
 const cakeOverlay=document.getElementById('cakeOverlay');
 const cakeCountdown=document.getElementById('cakeCountdown');
 const crittersLayer=document.getElementById('crittersLayer');
-const kinds=['gwen','miles']; // Gwen + Spider-Man (Miles)
+const kinds=['gwen','miles'];
 let nextKindIndex=0;
 let isSwinging=false;
 
@@ -199,12 +198,9 @@ function startSwingLoop(){
   spawnSwinger(kinds[nextKindIndex]);
 }
 
-/* ---- ONE-YODA GUARD: create the ship only once even if load runs twice ---- */
 function createSpaceship(){
-  if (window.__YODA_DONE__) return;                  // global guard
-  if (spaceLayer.querySelector('.spaceship')){       // DOM guard
-    window.__YODA_DONE__=true; return;
-  }
+  if (window.__YODA_DONE__) return;
+  if (spaceLayer.querySelector('.spaceship')){ window.__YODA_DONE__=true; return; }
   const shipWrap=document.createElement('div');
   shipWrap.className='spaceship';
   shipWrap.style.setProperty('--ship-speed',`${24+Math.floor(Math.random()*10)}s`);
@@ -228,7 +224,7 @@ function createSpaceship(){
   ship.appendChild(flame);
   shipWrap.appendChild(ship);
   spaceLayer.appendChild(shipWrap);
-  window.__YODA_DONE__=true; // mark as created
+  window.__YODA_DONE__=true;
 }
 
 function showCake(seconds){
@@ -361,37 +357,20 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); }
 function startReleaseCountdown(){
   const releaseBtn=document.getElementById('releaseBtn');
   const releaseCountdown=document.getElementById('releaseCountdown');
-  const startUTC=Date.UTC(2025,8,22,15,11,0);
-  function fmtHM(ms){
-    const totalMin=Math.max(0,Math.floor(ms/60000));
-    const h=Math.floor(totalMin/60);
-    const m=totalMin%60;
-    return `${h}:${String(m).padStart(2,'0')}`;
-  }
-  function sync(){
-    const now=Date.now();
-    if(now<startUTC){
-      releaseBtn.disabled=true;
-      releaseBtn.setAttribute('aria-disabled','true');
-      releaseCountdown.textContent=fmtHM(startUTC-now);
-      releaseBtn.textContent='Open Special Envelope at 11:11 PM • ';
-    }else{
-      releaseBtn.disabled=false;
-      releaseBtn.removeAttribute('aria-disabled');
-      releaseCountdown.textContent='';
-      releaseBtn.textContent='Open Special Envelope at 11:11 PM';
-    }
+  function enableNow(){
+    releaseBtn.disabled=false;
+    releaseBtn.removeAttribute('aria-disabled');
+    releaseCountdown.textContent='';
+    releaseBtn.textContent='Open Special Envelope';
   }
   releaseBtn.addEventListener('click',()=>{
     if(releaseBtn.disabled) return;
     document.body.classList.add('page-fade-out');
     setTimeout(()=>{ window.location.href='puzzle.html'; },320);
   });
-  sync();
-  setInterval(sync,1000);
+  enableNow();
 }
 
-/* ---- FIRST load handler (kept) ---- */
 window.addEventListener('load',()=>{
   const leftTrack=document.getElementById('leftTrack');
   const rightTrack=document.getElementById('rightTrack');
@@ -403,9 +382,9 @@ window.addEventListener('load',()=>{
 
   setTimeout(()=>burstConfetti(18),600);
 
-  startSwingLoop();                         // Gwen + Miles only
-  if(ENABLE_SPACESHIP) createSpaceship();   // SINGLE Yoda (guarded)
-  if(ENABLE_CRITTERS) startCritters();      // disabled per request
+  startSwingLoop();
+  if(ENABLE_SPACESHIP) createSpaceship();
+  if(ENABLE_CRITTERS) startCritters();
 
   showCake(15);
   initPlayer();
@@ -413,7 +392,6 @@ window.addEventListener('load',()=>{
   document.body.classList.add('page-fade-in');
 });
 
-/* ---- SECOND load handler (kept) ---- */
 window.addEventListener('load',()=>{
   const leftTrack=document.getElementById('leftTrack');
   const rightTrack=document.getElementById('rightTrack');
@@ -425,9 +403,9 @@ window.addEventListener('load',()=>{
 
   setTimeout(()=>burstConfetti(18),600);
 
-  startSwingLoop();                         // Gwen + Miles only
-  if(ENABLE_SPACESHIP) createSpaceship();   // still one Yoda
-  if(ENABLE_CRITTERS) startCritters();      // disabled
+  startSwingLoop();
+  if(ENABLE_SPACESHIP) createSpaceship();
+  if(ENABLE_CRITTERS) startCritters();
 
   showCake(15);
   initPlayer();

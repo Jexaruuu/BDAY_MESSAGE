@@ -28,7 +28,6 @@
       </aside>
 
       <div class="center-stack">
-        <!-- same music player -->
         <section class="player-wrap">
           <div class="player-label"><span class="type8">Play me!</span></div>
           <div class="player" id="audioPlayer">
@@ -52,10 +51,10 @@
 
         <div id="gifRow" class="gif-row" aria-label="GIF gallery"></div>
 
-        <!-- same envelope + letter -->
         <section class="envelope-wrapper">
           <div class="controls-row">
             <button id="toggleBtn" class="pixel-btn" aria-controls="envelope" aria-expanded="false">Open the envelope</button>
+            <button id="surpriseBtn" class="pixel-btn" aria-controls="surprise" aria-expanded="false">Surprise</button>
           </div>
 
           <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open birthday message">
@@ -90,7 +89,6 @@
     </footer>
   </div>
 
-  <!-- Blue Hearts overlay (same frosted blur as cake/puzzle) -->
   <div id="puzzleOverlay" class="puzzle-overlay show" aria-hidden="false">
     <div id="heartsField" class="hearts-field" aria-hidden="true"></div>
   </div>
@@ -106,6 +104,13 @@
         <img id="lbImg" alt="">
         <span class="bubble bubble-quote" id="lbQuote"></span>
       </div>
+    </div>
+  </div>
+
+  <div id="surprise" class="lightbox" aria-hidden="true">
+    <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Surprise">
+      <button class="lb-close" id="spClose" aria-label="Close">✕</button>
+      <div class="surprise-grid" id="surpriseGrid"></div>
     </div>
   </div>
 
