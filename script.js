@@ -1,5 +1,5 @@
-const leftImages=["1.png","2.png","3.png","4.png","5.png"];
-const rightImages=["5.png","4.png","3.png","2.png","1.png"];
+const leftImages=["venti.png","2.png","3.png","4.png","5.png"];
+const rightImages=["5.png","4.png","3.png","2.png","venti.png"];
 const centerGifs=["cookiesandcream.jpg","blueflower.jpg","coffee.jpg","citylights.jpg","moon.jpg"];
 const gwenPNG="gwen.png";
 const milesPNG="miles.png";
