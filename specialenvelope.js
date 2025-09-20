@@ -5,10 +5,10 @@ const gwenPNG="gwen.png", milesPNG="miles.png", yodaPNG="yoda.png";
 const catPNG="cat.gif", rabbitPNG="rabbit.gif";
 const heroConfig={gwen:{tiltDeg:-8,offsetX:-22,offsetY:0,scale:2.00},miles:{tiltDeg:6,offsetX:25,offsetY:-5,scale:1.00}};
 const speechData={
-  "venti.png":{cta:"tap me!",quote:"”Here's your venti cup of iced spanish latte with cinammon powder. Enjoy!”"},
-  "blueheart.png":{cta:"click me!",quote:"“Here's a blue heart for you.”"},
-  "gwenplushie.png":{cta:"open me!",quote:"“Gwen Stacy plushie for you 💙.”"},
-  "blue.png":{cta:"tap for magic",quote:"“I hope you like this blue flowers.”"},
+  "venti.png":{cta:"Venti for you!",quote:"”Here's your venti cup of iced spanish latte with cinammon powder. Enjoy!”"},
+  "blueheart.png":{cta:"Heart Heart!",quote:"“Here's a blue heart for you.”"},
+  "gwenplushie.png":{cta:"Plushie!",quote:"“Gwen Stacy plushie for you 💙.”"},
+  "blue.png":{cta:"Flowers for you!",quote:"“I hope you like this blue flowers.”"},
   "kitties.png":{cta:"look at these",quote:"“Here are some cute kitties for you.”"},
   "cookiesandcream.jpg":{cta:"yum?",quote:"“Life’s sweeter with you in it.”"},
   "blueflower.jpg":{cta:"smell this",quote:"“Bloom where you’re loved.”"},
