@@ -364,7 +364,7 @@ function startReleaseCountdown(){
     releaseBtn.disabled=false;
     releaseBtn.removeAttribute('aria-disabled');
     releaseCountdown.textContent='';
-    releaseBtn.textContent='Open Special Envelope';
+    releaseBtn.textContent='Open Special Envelope at 11:11 PM';
   }
 
   releaseBtn.addEventListener('click',()=>{
@@ -406,7 +406,7 @@ window.addEventListener('load',()=>{
         releaseBtn.disabled=false;
         releaseBtn.removeAttribute('aria-disabled');
         if (releaseCountdown) releaseCountdown.textContent='';
-        releaseBtn.textContent='Open Special Envelope';
+        releaseBtn.textContent='Open Special Envelope at 11:11 PM';
       }
     }
     try{sessionStorage.removeItem('fromEspecialEnvelope');}catch(e){}
@@ -444,7 +444,7 @@ window.addEventListener('load',()=>{
         releaseBtn.disabled=false;
         releaseBtn.removeAttribute('aria-disabled');
         if (releaseCountdown) releaseCountdown.textContent='';
-        releaseBtn.textContent='Open Special Envelope';
+        releaseBtn.textContent='Open Special Envelope at 11:11 PM';
       }
     }
     try{sessionStorage.removeItem('fromSpecialEnvelope');}catch(e){}
