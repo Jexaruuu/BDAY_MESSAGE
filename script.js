@@ -287,6 +287,9 @@ function startCritters(){
 window.addEventListener('mousemove',e=>{ mouse.x=e.clientX; mouse.y=e.clientY; });
 
 function initPlayer(){
+  if(window.__PLAYER_INITED__) return;
+  window.__PLAYER_INITED__=true;
+
   const audio=document.getElementById('audio');
   const cover=document.getElementById('playerCover');
   const titleEl=document.getElementById('playerTitle');
@@ -351,7 +354,6 @@ function initPlayer(){
 
   load(0,false);
 }
-
 
 const lightbox=document.getElementById('lightbox');
 const lbImg=document.getElementById('lbImg');
