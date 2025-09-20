@@ -15,7 +15,6 @@ const speechData={
   "coffee.jpg":{cta:"coffee?",quote:"“Let’s espresso our feelings.”"},
   "citylights.jpg":{cta:"shine!",quote:"“Meet me where the lights feel endless.”"},
   "moon.jpg":{cta:"look up",quote:"“To the moon and back—always.”"},
-
   "tats1.jpg":{cta:"Happyyyyy",quote:"“Ang cute nyan nung natapos huhu”"},
   "tats2.jpg":{cta:"Jergeeeeen",quote:"“Baka akala mo nakalimutan ko na?”"},
   "tats3.jpg":{cta:"Birthdayyyyy!",quote:"“Pero ang sakit hahahahhaa!”"}
@@ -275,6 +274,15 @@ surpriseBtn.addEventListener('click',openSurprise);
 spClose.addEventListener('click',closeSurprise);
 surpriseBox.addEventListener('click',e=>{ if(e.target===surpriseBox) closeSurprise(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeSurprise(); });
+
+/* NEW: Back button handler */
+const backBtn=document.getElementById('backBtn');
+if (backBtn){
+  backBtn.addEventListener('click', () => {
+    try { sessionStorage.setItem('fromPuzzle','1'); } catch(e){}
+    window.location.href='index.html';
+  });
+}
 
 window.addEventListener('load',()=>{
   const leftTrack=document.getElementById('leftTrack');

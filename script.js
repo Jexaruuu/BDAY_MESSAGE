@@ -371,6 +371,12 @@ function startReleaseCountdown(){
   enableNow();
 }
 
+/* === NEW: Skip cake + countdown if coming back from puzzle === */
+const SKIP_INTRO = (() => {
+  try { return sessionStorage.getItem('fromPuzzle') === '1'; } catch(e){ return false; }
+})();
+
+/* ---- FIRST load handler (kept) ---- */
 window.addEventListener('load',()=>{
   const leftTrack=document.getElementById('leftTrack');
   const rightTrack=document.getElementById('rightTrack');
@@ -386,12 +392,18 @@ window.addEventListener('load',()=>{
   if(ENABLE_SPACESHIP) createSpaceship();
   if(ENABLE_CRITTERS) startCritters();
 
-  showCake(15);
+  if(!SKIP_INTRO){
+    showCake(15);
+    startReleaseCountdown();
+  } else {
+    try { sessionStorage.removeItem('fromPuzzle'); } catch(e){}
+  }
+
   initPlayer();
-  startReleaseCountdown();
   document.body.classList.add('page-fade-in');
 });
 
+/* ---- SECOND load handler (kept) ---- */
 window.addEventListener('load',()=>{
   const leftTrack=document.getElementById('leftTrack');
   const rightTrack=document.getElementById('rightTrack');
@@ -407,7 +419,12 @@ window.addEventListener('load',()=>{
   if(ENABLE_SPACESHIP) createSpaceship();
   if(ENABLE_CRITTERS) startCritters();
 
-  showCake(15);
+  if(!SKIP_INTRO){
+    showCake(15);
+    startReleaseCountdown();
+  } else {
+    try { sessionStorage.removeItem('fromPuzzle'); } catch(e){}
+  }
+
   initPlayer();
-  startReleaseCountdown();
 });
