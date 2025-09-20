@@ -299,7 +299,7 @@ const btsBtn=document.getElementById('btsBtn');
 const btsBox=document.getElementById('btsBox');
 const btsClose=document.getElementById('btsClose');
 const btsVideo=document.getElementById('btsVideo');
-const BTS_SRC='behind-the-scenes.mp4';
+const BTS_SRC='bts.mp4';
 
 function openBTS(){
   btsVideo.src=BTS_SRC;
