@@ -23,7 +23,7 @@ const speechData={
 const getCTA=src=>speechData[src]?.cta||"tap me!";
 const getQuote=src=>speechData[src]?.quote||"“Happy birthday, keep shining!”";
 const playlist=[
-  {title:"1550 Collective — G LUV 2",src:"g-luve-2.mp3",cover:"gluv2.jpg"},
+  {title:"1550 Collective — G LUV 2",src:"g-luv-2.mp3",cover:"gluv2.jpg"},
   {title:"Maki — Kahel na Langit",src:"kahel-na-langit.mp3",cover:"kahelnalangit.jpg"},
   {title:"LANY — you!",src:"you-!.mp3",cover:"1.jpg"},
   {title:"LANY — dancing in the kitchen",src:"dancing-in-the-kitchen.mp3",cover:"3.jpg"},
