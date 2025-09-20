@@ -34,7 +34,7 @@ const playlist=[
   {title:"Justin Bieber — Daisies",src:"daisies.mp3",cover:"daisies.jpg"},
   {title:"Justin Bieber — Love You Different",src:"love-you-different.mp3",cover:"loveyoudifferent.jpg"},
   {title:"Justin Bieber — Stay",src:"stay.mp3",cover:"stay.jpg"},
-  {title:"Ali Gatie — What If I Told You That I Love You",src:"what-if-i-told-you-that-i-love-you.mp3",cover:"wiiytily.jpg"},
+  {title:"Ali Gatie — What If I Told You That I Love You",src:"what-if-i-told-that-i-love-you.mp3",cover:"wiiytily.jpg"},
   {title:"RCHRD — Cuddles",src:"cuddles.mp3",cover:"cuddles.jpg"},
   {title:"Ali Gatie — It's You",src:"its-you.mp3",cover:"itsyou.jpg"},
   {title:"XION. — Emerald",src:"emerald.mp3",cover:"emerald.jpg"},
