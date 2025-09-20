@@ -9,7 +9,7 @@ const speechData={
   "blueheart.png":{cta:"Heart Heart!",quote:"“Here's a blue heart for you.”"},
   "gwenplushie.png":{cta:"Plushie!",quote:"“Gwen Stacy plushie for you 💙.”"},
   "blue.png":{cta:"Flowers for you!",quote:"“I hope you like this blue flowers.”"},
-  "kitties.png":{cta:"look at these",quote:"“Here are some cute kitties for you.”"},
+  "kitties.png":{cta:"Kitties!",quote:"“Here are some cute kitties for you.”"},
   "cookiesandcream.jpg":{cta:"yum?",quote:"“Life’s sweeter with you in it.”"},
   "blueflower.jpg":{cta:"smell this",quote:"“Bloom where you’re loved.”"},
   "coffee.jpg":{cta:"coffee?",quote:"“Let’s espresso our feelings.”"},
