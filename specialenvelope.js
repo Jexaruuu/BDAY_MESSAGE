@@ -24,15 +24,20 @@ const getCTA=src=>speechData[src]?.cta||"tap me!";
 const getQuote=src=>speechData[src]?.quote||"“Happy birthday, keep shining!”";
 const playlist=[
   {title:"Maki — Kahel na Langit",src:"kahel-na-langit.mp3",cover:"kahelnalangit.jpg"},
-  {title:"1550 Collective — G LUV 2",src:"g-luv-2.mp3",cover:"gluv2.jpg"},
-  {title:"4 of Spades — Aura",src:"aura.mp3",cover:"aura.jpg"},
-  {title:"LANY — dancing in the kitchen",src:"dancing-in-the-kitchen.mp3",cover:"3.jpg"},
-  {title:"LANY — cowboy in la",src:"cowboy-in-la.mp3",cover:"1.jpg"},
-  {title:"LANY — like you lots",src:"like-you-lots.mp3",cover:"4.jpg"},
-  {title:"LANY — pink skies",src:"pink-skies.mp3",cover:"4.jpg"},
-  {title:"LANY — yea, babe, no way",src:"yea-babe-no-way.mp3",cover:"5.jpg"},
-  {title:"LANY — made in hollywood",src:"made-in-hollywood.mp3",cover:"6.jpg"},
-  {title:"LANY — up to me",src:"up-to-me.mp3",cover:"7.webp"}
+  {title:"1550 Collective — G luv 2",src:"g-luv-2.mp3",cover:"gluv2.jpg"},
+  {title:"IV of Spades — Aura",src:"aura.mp3",cover:"aura.jpg"},
+  {title:"Yden — Ngalan mo",src:"ngalan-mo.mp3",cover:"ngalanmo.jpg"},
+  {title:"Dionela — Oksihina",src:"oksihina.mp3",cover:"oksihina.jpg"}, 
+  {title:"Kiyo — Eba",src:"eba.mp3",cover:"eba.jpg"},
+  {title:"Kiyo — Hanap",src:"hanap.mp3",cover:"hanap.jpg"},
+  {title:"Kylu & Yamada — Otw",src:"otw.mp3",cover:"otw.jpg"},
+  {title:"Justin Bieber — Daisies",src:"daisies.mp3",cover:"daisies.jpg"},
+  {title:"Justin Bieber — Love You Different",src:"love-you-different.mp3",cover:"loveyoudifferent.jpg"},
+  {title:"Justin Bieber — Stay",src:"stay.mp3",cover:"stay.jpg"},
+  {title:"Ali Gatie — What If I Told You That I Love You",src:"what-if-i-told-you-that-i-love-you.mp3",cover:"wiiytily.jpg"},
+  {title:"RCHRD — Cuddles",src:"cuddles.mp3",cover:"cuddles.jpg"},
+  {title:"Ali Gatie — It's You",src:"its-you.mp3",cover:"itsyou.jpg"},
+  {title:"XION. — Emerald",src:"emerald.mp3",cover:"emerald.jpg"},
 ];
 
 function buildFilm(trackEl,images,direction="up"){
@@ -289,3 +294,29 @@ window.addEventListener('load',()=>{
   initPlayer();
   startHeartsIntro(6000);
 });
+
+const btsBtn=document.getElementById('btsBtn');
+const btsBox=document.getElementById('btsBox');
+const btsClose=document.getElementById('btsClose');
+const btsVideo=document.getElementById('btsVideo');
+const BTS_SRC='behind-the-scenes.mp4';
+
+function openBTS(){
+  btsVideo.src=BTS_SRC;
+  btsVideo.load();
+  btsBox.classList.add('show');
+  btsBox.setAttribute('aria-hidden','false');
+  btsBtn.setAttribute('aria-expanded','true');
+  btsVideo.play().catch(()=>{});
+}
+function closeBTS(){
+  btsVideo.pause();
+  btsVideo.removeAttribute('src');
+  btsBox.classList.remove('show');
+  btsBox.setAttribute('aria-hidden','true');
+  btsBtn.setAttribute('aria-expanded','false');
+}
+btsBtn.addEventListener('click',openBTS);
+btsClose.addEventListener('click',closeBTS);
+btsBox.addEventListener('click',e=>{ if(e.target===btsBox) closeBTS(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeBTS(); });

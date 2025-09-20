@@ -452,3 +452,13 @@ html, body{
 .heart::after{ top:-50%; left:0; }
 .envelope:hover .seal{ filter:brightness(1.06); transform:translate(-50%,-50%) scale(1.04); }
 .envelope.is-open .seal{ opacity:0; transform:translate(-50%,-50%) scale(.7) rotate(-10deg); }
+
+.lb-video-wrap video{
+  max-width:min(80vw,640px);
+  max-height:min(70vh,620px);
+  width:auto;
+  height:auto;
+  border-radius:12px;
+  display:block;
+  outline:none;
+}

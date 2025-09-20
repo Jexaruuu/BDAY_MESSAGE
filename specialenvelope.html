@@ -12,12 +12,12 @@
   <div class="bg-stars" aria-hidden="true"></div>
 
   <div class="viewport">
-    <header class="hud">
-      <h1>Happy Birthday Jergen!</h1>
-      <h1>Here's your special surprise and a special message! 💙</h1>
-      <br />
-   
-    </header>
+<header class="hud">
+  <h1>Happy Birthday Jergen!</h1>
+  <h1>Here's your special surprise and a special message! 💙</h1>
+  <br />
+  <button id="btsBtn" class="pixel-btn" aria-controls="btsBox" aria-expanded="false">Behind The Scene</button>
+</header>
 
     <main class="stage">
       <aside class="film film-left">
@@ -115,6 +115,15 @@
       <div class="surprise-grid" id="surpriseGrid"></div>
     </div>
   </div>
+
+  <div id="btsBox" class="lightbox" aria-hidden="true">
+  <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Behind The Scene">
+    <button class="lb-close" id="btsClose" aria-label="Close">✕</button>
+    <div class="lb-img-wrap lb-video-wrap">
+      <video id="btsVideo" playsinline controls></video>
+    </div>
+  </div>
+</div>
 
   <script src="specialenvelope.js"></script>
 </body>
