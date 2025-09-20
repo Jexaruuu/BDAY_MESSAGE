@@ -18,13 +18,13 @@ const speechData={
 
   "tats1.jpg":{cta:"Happyyyyy",quote:"“Ang cute nyan nung natapos huhu”"},
   "tats2.jpg":{cta:"Jergeeeeen",quote:"“Baka akala mo nakalimutan ko na?”"},
-  "tats3.jpg":{cta:"Birthdayyyyy!",quote:"“Pero ang sakit hahahahhaa!”"}
+  "tats3.jpg":{cta:"Birthdayyyyy!",quote:"“Pa'no ba yan? lagi na kitang maalala pag makikita to ko.”"}
 };
 const getCTA=src=>speechData[src]?.cta||"tap me!";
 const getQuote=src=>speechData[src]?.quote||"“Happy birthday, keep shining!”";
 const playlist=[
-  {title:"LANY — anything 4 u",src:"anything-4-u.mp3",cover:"1.jpg"},
-  {title:"LANY — ilysb",src:"ilysb.mp3",cover:"2.jpg"},
+  {title:"1550 Collective — G LUV 2",src:"g-luve-2.mp3",cover:"gluv2.jpg"},
+  {title:"Maki — Kahel na Langit",src:"kahel-na-langit.mp3",cover:"kahelnalangit.jpg"},
   {title:"LANY — you!",src:"you-!.mp3",cover:"1.jpg"},
   {title:"LANY — dancing in the kitchen",src:"dancing-in-the-kitchen.mp3",cover:"3.jpg"},
   {title:"LANY — cowboy in la",src:"cowboy-in-la.mp3",cover:"1.jpg"},
