@@ -462,3 +462,4 @@ html, body{
   display:block;
   outline:none;
 }
+.no-swing .swing-layer { display: none; }

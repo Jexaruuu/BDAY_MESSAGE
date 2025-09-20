@@ -111,7 +111,12 @@ function burstConfetti(count=120){
 const swingLayer=document.getElementById('swingLayer');
 const spaceLayer=document.getElementById('spaceLayer');
 const crittersLayer=document.getElementById('crittersLayer');
-let nextKindIndex=0,isSwinging=false; const kinds=['gwen','miles'];
+let nextKindIndex=0, isSwinging=false; 
+const kinds=['gwen','miles'];
+const SWING_ENABLED = !document.body.classList.contains('no-swing');
+// If swinging is disabled for this page, mark as "busy" so spawn never starts
+if (!SWING_ENABLED) isSwinging = true;
+
 
 function makeHeroImg(kind){
   const img=document.createElement('img'); img.alt=kind==='gwen'?'Gwen Stacy':'Miles Morales';
@@ -288,7 +293,7 @@ window.addEventListener('load',()=>{
   buildFilm(leftTrack,leftImages,"down");
   buildFilm(rightTrack,rightImages,"up");
   buildGifRow(gifRow,centerGifs);
-  startSwingLoop();
+if (SWING_ENABLED) startSwingLoop();
   createSpaceship();
   startCritters();
   initPlayer();
