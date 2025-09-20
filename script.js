@@ -308,6 +308,7 @@ function initPlayer(){
     cover.src=tr.cover||cover.src;
     audio.src=tr.src;
     audio.load();
+    audio.currentTime=0;
     setPlayIcon(true);
     if(auto) audio.play().catch(()=>{});
   }
@@ -326,10 +327,23 @@ function initPlayer(){
   audio.addEventListener('pause',()=>setPlayIcon(true));
   audio.addEventListener('error',next);
 
-  playBtn.addEventListener('click',()=>{ if(audio.paused) audio.play().catch(()=>{}); else audio.pause(); });
-  nextBtn.addEventListener('click',next);
-  prevBtn.addEventListener('click',prev);
-  bar.addEventListener('click',e=>{
+  playBtn.addEventListener('click',(e)=>{
+    e.preventDefault(); e.stopPropagation();
+    if(audio.paused){
+      if(audio.readyState<2){
+        const onReady=()=>{ audio.removeEventListener('canplay',onReady); audio.play().catch(()=>{}); };
+        audio.addEventListener('canplay',onReady,{once:true});
+        audio.load();
+      }else{
+        audio.play().catch(()=>{});
+      }
+    }else{
+      audio.pause();
+    }
+  });
+  nextBtn.addEventListener('click',(e)=>{ e.preventDefault(); e.stopPropagation(); next(); });
+  prevBtn.addEventListener('click',(e)=>{ e.preventDefault(); e.stopPropagation(); prev(); });
+  bar.addEventListener('click',(e)=>{
     const rect=bar.getBoundingClientRect();
     const r=Math.min(1,Math.max(0,(e.clientX-rect.left)/rect.width));
     audio.currentTime=r*(audio.duration||0);
@@ -337,6 +351,7 @@ function initPlayer(){
 
   load(0,false);
 }
+
 
 const lightbox=document.getElementById('lightbox');
 const lbImg=document.getElementById('lbImg');
