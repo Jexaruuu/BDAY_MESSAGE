@@ -25,7 +25,7 @@ const getQuote=src=>speechData[src]?.quote||"“Happy birthday, keep shining!”
 const playlist=[
   {title:"Maki — Kahel na Langit",src:"kahel-na-langit.mp3",cover:"kahelnalangit.jpg"},
   {title:"1550 Collective — G LUV 2",src:"g-luv-2.mp3",cover:"gluv2.jpg"},
-  {title:"LANY — you!",src:"you-!.mp3",cover:"1.jpg"},
+  {title:"4 of Spades — Aura",src:"aura.mp3",cover:"aura.jpg"},
   {title:"LANY — dancing in the kitchen",src:"dancing-in-the-kitchen.mp3",cover:"3.jpg"},
   {title:"LANY — cowboy in la",src:"cowboy-in-la.mp3",cover:"1.jpg"},
   {title:"LANY — like you lots",src:"like-you-lots.mp3",cover:"4.jpg"},
