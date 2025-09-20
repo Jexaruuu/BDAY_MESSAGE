@@ -276,15 +276,6 @@ spClose.addEventListener('click',closeSurprise);
 surpriseBox.addEventListener('click',e=>{ if(e.target===surpriseBox) closeSurprise(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeSurprise(); });
 
-/* NEW: Back button → mark flag and return to index */
-const backBtn=document.getElementById('backBtn');
-if (backBtn){
-  backBtn.addEventListener('click', ()=>{
-    try { sessionStorage.setItem('fromPuzzle','1'); } catch(e){}
-    window.location.href='index.html';
-  });
-}
-
 window.addEventListener('load',()=>{
   const leftTrack=document.getElementById('leftTrack');
   const rightTrack=document.getElementById('rightTrack');
