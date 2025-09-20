@@ -1,6 +1,6 @@
 const leftImages=["venti.png","blueheart.png","gwenplushie.png","blue.png","kitties.png"];
 const rightImages=["kitties.png","blue.png","gwenplushie.png","blueheart.png","venti.png"];
-const centerGifs=["cookiesandcream.jpg","blueflower.jpg","coffee.jpg","citylights.jpg","moon.jpg","frenchfries.jpg","gwenstacy.jpg", "ac.jpg","bcdtomnl.jpg"];
+const centerGifs=["cookiesandcream.jpg","frenchfries.jpg","gwenstacy.jpg", "ac.jpg","bcdtomnl.jpg"];
 const gwenPNG="gwen.png", milesPNG="miles.png", yodaPNG="yoda.png";
 const catPNG="cat.gif", rabbitPNG="rabbit.gif";
 const heroConfig={gwen:{tiltDeg:-8,offsetX:-22,offsetY:0,scale:2.00},miles:{tiltDeg:6,offsetX:25,offsetY:-5,scale:1.00}};
