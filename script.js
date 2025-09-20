@@ -14,6 +14,9 @@ const confettiLayer=document.getElementById('confetti-layer');
 const ENABLE_CRITTERS=false;
 const ENABLE_SPACESHIP=true;
 
+/* NEW: detect if we just came back from puzzle to skip intro but keep button enabled */
+const SKIP_INTRO = (()=>{ try{ return sessionStorage.getItem('fromPuzzle')==='1'; }catch(e){ return false; }})();
+
 const speechData={"1.png":{cta:"tap me!",quote:"“Small moments, big smiles.”"},"2.png":{cta:"click me!",quote:"“You’re doing amazing, keep going.”"},"3.png":{cta:"hey, psst →",quote:"“Today is for joy (and cake).”"},"4.png":{cta:"open me!",quote:"“You light up the room like city lights.”"},"5.png":{cta:"tap for magic",quote:"“More laughs. More love. More you.”"},"cookiesandcream.jpg":{cta:"yum?",quote:"“Life’s sweeter with you in it.”"},"blueflower.jpg":{cta:"smell this",quote:"“Bloom where you’re loved.”"},"coffee.jpg":{cta:"coffee?",quote:"“Let’s espresso our feelings.”"},"citylights.jpg":{cta:"shine!",quote:"“Meet me where the lights feel endless.”"},"moon.jpg":{cta:"look up",quote:"“To the moon and back—always.”"}};
 const getCTA=src=>speechData[src]?.cta||"tap me!";
 const getQuote=src=>speechData[src]?.quote||"“Happy birthday, keep shining!”";
@@ -354,27 +357,30 @@ lbClose.addEventListener('click',closeLightbox);
 lightbox.addEventListener('click',e=>{ if(e.target===lightbox) closeLightbox(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); });
 
+/* REVISED: always-enable version (no date logic) */
 function startReleaseCountdown(){
   const releaseBtn=document.getElementById('releaseBtn');
   const releaseCountdown=document.getElementById('releaseCountdown');
-  function enableNow(){
+
+  function enableReleaseNow(){
     releaseBtn.disabled=false;
     releaseBtn.removeAttribute('aria-disabled');
     releaseCountdown.textContent='';
     releaseBtn.textContent='Open Special Envelope';
   }
+
   releaseBtn.addEventListener('click',()=>{
     if(releaseBtn.disabled) return;
     document.body.classList.add('page-fade-out');
     setTimeout(()=>{ window.location.href='puzzle.html'; },320);
   });
-  enableNow();
-}
 
-/* === NEW: Skip cake + countdown if coming back from puzzle === */
-const SKIP_INTRO = (() => {
-  try { return sessionStorage.getItem('fromPuzzle') === '1'; } catch(e){ return false; }
-})();
+  // always enable immediately
+  enableReleaseNow();
+
+  // expose in case we need to enable when skipping intro
+  window.__enableReleaseNow__ = enableReleaseNow;
+}
 
 /* ---- FIRST load handler (kept) ---- */
 window.addEventListener('load',()=>{
@@ -395,7 +401,20 @@ window.addEventListener('load',()=>{
   if(!SKIP_INTRO){
     showCake(15);
     startReleaseCountdown();
-  } else {
+  }else{
+    // returning from puzzle: enable the button instantly and clear the flag
+    if (typeof window.__enableReleaseNow__ === 'function') {
+      window.__enableReleaseNow__();
+    } else {
+      const releaseBtn=document.getElementById('releaseBtn');
+      const releaseCountdown=document.getElementById('releaseCountdown');
+      if (releaseBtn){
+        releaseBtn.disabled=false;
+        releaseBtn.removeAttribute('aria-disabled');
+        if (releaseCountdown) releaseCountdown.textContent='';
+        releaseBtn.textContent='Open Special Envelope';
+      }
+    }
     try { sessionStorage.removeItem('fromPuzzle'); } catch(e){}
   }
 
@@ -422,7 +441,19 @@ window.addEventListener('load',()=>{
   if(!SKIP_INTRO){
     showCake(15);
     startReleaseCountdown();
-  } else {
+  }else{
+    if (typeof window.__enableReleaseNow__ === 'function') {
+      window.__enableReleaseNow__();
+    } else {
+      const releaseBtn=document.getElementById('releaseBtn');
+      const releaseCountdown=document.getElementById('releaseCountdown');
+      if (releaseBtn){
+        releaseBtn.disabled=false;
+        releaseBtn.removeAttribute('aria-disabled');
+        if (releaseCountdown) releaseCountdown.textContent='';
+        releaseBtn.textContent='Open Special Envelope';
+      }
+    }
     try { sessionStorage.removeItem('fromPuzzle'); } catch(e){}
   }
 

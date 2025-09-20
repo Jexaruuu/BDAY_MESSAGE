@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="page-fade-in no-extras">
+  <!-- NEW: fixed top-left Back button -->
+  <button id="backBtn" class="pixel-btn back-btn" aria-label="Back to home">← Back</button>
+
   <div class="bg-stars" aria-hidden="true"></div>
 
   <div class="viewport">
@@ -55,8 +58,6 @@
           <div class="controls-row">
             <button id="toggleBtn" class="pixel-btn" aria-controls="envelope" aria-expanded="false">Open the envelope</button>
             <button id="surpriseBtn" class="pixel-btn" aria-controls="surprise" aria-expanded="false">Surprise</button>
-            <!-- NEW: Back button -->
-            <button id="backBtn" class="pixel-btn" aria-label="Back to home">Back</button>
           </div>
 
           <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open birthday message">
