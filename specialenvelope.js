@@ -17,7 +17,7 @@ const speechData={
   "bcdtomnl.jpg":{cta:"BCDtoMNL",quote:"“Worth it!, Kahit na saglit lang kita nakita.”"},
   "tats1.jpg":{cta:"Happyyyyy",quote:"“Ang cute nyan nung natapos huhu”"},
   "tats2.jpg":{cta:"Jergeeeeen",quote:"“Baka akala mo nakalimutan ko na?”"},
-  "tats3.jpg":{cta:"Birthdayyyyy!",quote:"“Pa'no ba yan? lagi na kitang maalala pag makikita to ko.”"}
+  "tats3.jpg":{cta:"Birthdayyyyy!",quote:"“Pa'no ba yan? lagi na kitang maaalala pag makikita ko to.”"}
 };
 const getCTA=src=>speechData[src]?.cta||"tap me!";
 const getQuote=src=>speechData[src]?.quote||"“Happy birthday, keep shining!”";
