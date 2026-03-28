@@ -16,8 +16,9 @@ const ENABLE_SPACESHIP=true;
 
 const SKIP_INTRO=(()=>{try{return sessionStorage.getItem('fromSpecialEnvelope')==='1';}catch(e){return false;}})();
 
-// Target unlock time: 2025-09-22 23:11:00 Asia/Manila (+08:00)
 const RELEASE_TS = Date.parse('2025-09-22T23:11:00+08:00');
+const MINI_SURPRISE_TS = Date.parse('2026-05-14T00:00:00+08:00');
+const MINI_SURPRISE_URL = 'https://aqui-birthday.vercel.app';
 
 const speechData={"1.png":{cta:"tap me!",quote:"“Small moments, big smiles.”"},"2.png":{cta:"click me!",quote:"“You’re doing amazing, keep going.”"},"3.png":{cta:"hey, psst →",quote:"“Today is for joy (and cake).”"},"4.png":{cta:"open me!",quote:"“You light up the room like city lights.”"},"5.png":{cta:"tap for magic",quote:"“More laughs. More love. More you.”"},"cookiesandcream.jpg":{cta:"yum?",quote:"“Life’s sweeter with you in it.”"},"blueflower.jpg":{cta:"smell this",quote:"“Bloom where you’re loved.”"},"coffee.jpg":{cta:"coffee?",quote:"“Let’s espresso our feelings.”"},"citylights.jpg":{cta:"shine!",quote:"“Meet me where the lights feel endless.”"},"moon.jpg":{cta:"look up",quote:"“To the moon and back—always.”"}};
 const getCTA=src=>speechData[src]?.cta||"tap me!";
@@ -376,7 +377,6 @@ lbClose.addEventListener('click',closeLightbox);
 lightbox.addEventListener('click',e=>{ if(e.target===lightbox) closeLightbox(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); });
 
-// Countdown + gate logic
 function startReleaseCountdown(){
   const releaseBtn=document.getElementById('releaseBtn');
   const releaseCountdown=document.getElementById('releaseCountdown');
@@ -433,48 +433,45 @@ function startReleaseCountdown(){
 
   tick();
   intervalId = setInterval(tick,1000);
-  window.__enableReleaseNow__ = enableReleaseNow; // keep for compatibility
+  window.__enableReleaseNow__ = enableReleaseNow;
 }
 
-window.addEventListener('load',()=>{
-  const leftTrack=document.getElementById('leftTrack');
-  const rightTrack=document.getElementById('rightTrack');
-  const gifRow=document.getElementById('gifRow');
+function startMiniSurpriseCountdown(){
+  const miniSurpriseBtn=document.getElementById('miniSurpriseBtn');
+  if(!miniSurpriseBtn) return;
 
-  buildFilm(leftTrack,leftImages,"down");
-  buildFilm(rightTrack,rightImages,"up");
-  buildGifRow(gifRow,centerGifs);
+  let intervalId=null;
 
-  setTimeout(()=>burstConfetti(18),600);
-
-  startSwingLoop();
-  if(ENABLE_SPACESHIP) createSpaceship();
-  if(ENABLE_CRITTERS) startCritters();
-
-  if(!SKIP_INTRO){
-    showCake(15);
-    startReleaseCountdown();
-  }else{
-    // Keep original enable path, but countdown will immediately correct the state if it's not yet time
-    if (typeof window.__enableReleaseNow__ === 'function') {
-      window.__enableReleaseNow__();
-    } else {
-      const releaseBtn=document.getElementById('releaseBtn');
-      const releaseCountdown=document.getElementById('releaseCountdown');
-      if (releaseBtn){
-        releaseBtn.disabled=false;
-        releaseBtn.removeAttribute('aria-disabled');
-        if (releaseCountdown) releaseCountdown.textContent='';
-        releaseBtn.textContent='Open Special Envelope at 11:11 PM';
-      }
-    }
-    try{sessionStorage.removeItem('fromEspecialEnvelope');}catch(e){}
-    startReleaseCountdown();
+  function disableMini(){
+    miniSurpriseBtn.disabled=true;
+    miniSurpriseBtn.setAttribute('aria-disabled','true');
   }
 
-  initPlayer();
-  document.body.classList.add('page-fade-in');
-});
+  function enableMini(){
+    miniSurpriseBtn.disabled=false;
+    miniSurpriseBtn.removeAttribute('aria-disabled');
+  }
+
+  function tick(){
+    const now=Date.now();
+    const diff=MINI_SURPRISE_TS-now;
+    if(diff<=0){
+      enableMini();
+      clearInterval(intervalId);
+      intervalId=null;
+    }else{
+      disableMini();
+    }
+  }
+
+  miniSurpriseBtn.addEventListener('click',()=>{
+    if(miniSurpriseBtn.disabled) return;
+    window.location.href=MINI_SURPRISE_URL;
+  });
+
+  tick();
+  intervalId=setInterval(tick,1000);
+}
 
 window.addEventListener('load',()=>{
   const leftTrack=document.getElementById('leftTrack');
@@ -511,5 +508,7 @@ window.addEventListener('load',()=>{
     startReleaseCountdown();
   }
 
+  startMiniSurpriseCountdown();
   initPlayer();
+  document.body.classList.add('page-fade-in');
 });
